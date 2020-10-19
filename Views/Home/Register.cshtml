@@ -1,0 +1,41 @@
+@model User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <h1>Welcome to UApplied</h1>
+        <p>Use UApplied to help you find the right job and keep track of all the jobs you have applied.</p>
+        <p>Already have an account? <a href="/signin">Sign in</a></p>
+    </div>
+    <div>
+        <form asp-action="Register" asp-controller="Home" method="POST">
+            <span asp-validation-for="Username"></span>
+            <div class="">
+                <label asp-for="Username"></label>
+                <input asp-for="Username">
+            </div>
+            <span asp-validation-for="Email"></span>
+            <div class="">
+                <label asp-for="Email"></label>
+                <input asp-for="Email">
+            </div>
+            <span asp-validation-for="Password"></span>
+            <div class="">
+                <label asp-for="Password"></label>
+                <input asp-for="Password">
+            </div>
+            <span asp-validation-for="ConfirmPassword"></span>
+            <div class="">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword">
+            </div>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
