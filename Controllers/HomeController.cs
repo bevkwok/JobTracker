@@ -49,7 +49,7 @@ namespace JobTracker.Controllers
                 dbContext.SaveChanges();
                 HttpContext.Session.SetInt32("UserId", newUser.UserId);
                 int? theUserId = HttpContext.Session.GetInt32("UserId");
-                return RedirectToAction("Home",new{UserId = theUserId});
+                return RedirectToAction("Home",new{UserId = theUserId}); //
             }
             else
             {
@@ -57,10 +57,59 @@ namespace JobTracker.Controllers
             }
         }
 
-        [HttpGet("Signin")]
+        [HttpGet("signin")]
         public IActionResult Signin()
         {
             return View();
+        }
+
+
+        [HttpPost("login")]
+        public IActionResult Login(UserLogin loginUser)
+        {
+            User userInDb = dbContext.Users.FirstOrDefault(u => u.Email == loginUser.LogEmail);
+
+            if(userInDb == null)
+            {
+                ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+                return Index();
+            }
+
+            var hasher = new PasswordHasher<User>();
+
+            var result =  hasher.VerifyHashedPassword(userInDb, userInDb.Password, loginUser.LogPassword);
+
+            if(result == 0)
+            {
+                ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+                return Index();
+            }
+            HttpContext.Session.SetInt32("UserId", userInDb.UserId);
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            return RedirectToAction("Home",new{UserId = theUserId});
+        }
+
+        [HttpGet("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            TempData["OneUser.FirstName"] = "Please signin or register";
+            return RedirectToAction("Signin");
+        }
+
+        [HttpGet("Home/{UserId}")]
+        public IActionResult Home(int UserId)
+        {   
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
+
+
+
+            return View("Home");
         }
 
     }

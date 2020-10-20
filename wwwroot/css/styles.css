@@ -1,0 +1,208 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    /* border: tomato 1px solid; */
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+.icon{
+    padding: 15px;
+}
+
+.icon a{
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+.icon a:hover{
+    color: rgb(77, 177, 207);
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav:hover{
+    background: linear-gradient( rgba(77, 177, 207, 0.3), rgba(77, 177, 207, 0.3) );
+}
+
+.nav_title h2{
+    padding: 30px 40px;
+}
+
+.nav_options a{
+    text-decoration: none;
+    color: white;
+    margin-right: 3.5vw;
+    padding: 0.5vw;
+}
+
+.nav_options a:hover{
+    font-weight: 700;
+    border-bottom: 0.5vw solid rgb(77, 177, 207);
+    padding-bottom: 1vw;
+}
+
+span{
+    color: red;
+}
+
+#index_body, #reg_log_body{
+    background-image: url(../images/scott-graham-5fNmWej4tAA-unsplash.jpg) ;
+    background: linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(../images/scott-graham-5fNmWej4tAA-unsplash.jpg);
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+#reg_log_body{
+    color: black;
+}
+
+
+.index_main{
+    margin: 7vw 9vw;
+    text-align: center;
+}
+.index_main h1{
+    font-size: 4.5vw;
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+
+}
+
+.index_main_title{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.index_main_body{
+    line-height: 1.5;
+    padding: 20px;
+    font-size: 2vw;
+}
+
+.index_main_btn{
+    margin: 20px;
+}
+
+.index_main_btn input{
+    padding: 1.5vw 3vw;
+    margin: 4vw;
+    font-size: 2vw;
+    font-weight: 700;
+    background-color: Transparent;
+    color: rgb(77, 177, 207);
+    border: 0.5vw solid  rgb(58, 157, 187);
+}
+
+.index_main_btn input:hover{
+    color: rgb(90,90,90);
+    border: 0.5vw solid  rgb(184, 239, 255);
+    background-color:rgb(184, 239, 255);
+}
+
+.fas{
+    color: rgb(60, 160, 190);
+
+}
+
+.fa-clipboard-list{
+    padding: 40px;
+}
+
+.reg_log_page{
+    width: 65%;
+}
+
+.signin_main{
+    padding: 20px;
+}
+
+.signin_main h1{
+    font-weight: 400;
+    font-size: 40px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.signin_main p{
+    margin: 30px 0px 10px 0px;
+    text-align: center;
+}
+
+.signin_main a{
+    text-decoration: none;
+    color: rgb(60, 160, 190);
+}
+
+.signin_main a:hover{
+    color: rgb(4, 63, 82);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.reg_log_page{
+    background: linear-gradient( rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9) );
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 0px;
+}
+
+.reg_log_form{
+    padding: 5px 20px;
+}
+
+.reg_log_form ul{
+    padding: 5px 20% 30px 20%;
+}
+
+.reg_log_form li{
+    float: left;
+    margin-right: 30px;
+    font-size: 14px;
+    color: rgb(60, 160, 190);
+} 
+
+
+
+.reg_log_form label{
+    margin: 0px 10%;
+    font-weight: 600;
+    color: rgb(78, 78, 78);
+}
+
+.reg_log_form_input input{
+    display: block;
+    width: 80%;
+    height: 40px;
+    padding: 0px 8px;
+    margin: 8px auto 20px auto;
+    border: 1px solid rgb(216, 216, 216);
+}
+
+.input_btn{
+    display: block;
+    font-size: 20px;
+    color: white;
+    border: none;
+    background-color: rgb(60, 160, 190);
+    padding: 1vw 12vw;
+    margin: 40px auto 10px auto;
+}
+
+.input_btn:hover{
+    color: rgb(172, 172, 172);
+    background-color: rgb(9, 74, 94);
+}
