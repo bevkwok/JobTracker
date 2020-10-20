@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UApplied</title>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true">
 </head>
-<body>
-    <div>
-        <div>
-            <h2>UApplied</h2>
+<body id="index_body">
+    <div class="nav">
+        <div class="nav_title">
+            
+            <h2><i class="fas fa-pen-fancy"></i> UApplied</h2>
         </div>
-        <div>
+        <div class="nav_options">
             <a href="">HOME</a>
             <a href="">LEARN MORE</a>
         </div>
     </div>
-    <div>
-        <div>
-            <h1>HELP YOU KEEP TRACK OF ALL THE JOBS YOU'VE APPLIED</h1>
+    <div class="index_main">
+        <div class="index_main_title">
+            <h1>KEEP TRACK OF ALL THE JOBS YOU'VE APPLIED</h1>
+            <i class="fas fa-clipboard-list fa-9x"></i>
         </div>
-        <div>
-            <p>Sigu up to gain access to UApplied</p>
+        <div class="index_main_body">
+            <p>You have applied to many jobs. Now what?   Can you remember which jobs did you apply?   Sigu up to gain access to UApplied and keep track of them.</p>
+            <p></p>
         </div>
-        <div>
+        <div class="index_main_btn">
             <input type="button" value="SIGU UP" onclick="location.href='@Url.Action("Register", "Home")'" />
-            <input type="button" value="SIGU IN" onclick="location.href='@Url.Action("Login", "Home")'" />
+            <input type="button" value="LOG IN" onclick="location.href='@Url.Action("Signin", "Home")'" />
         </div>
     </div>
 </body>

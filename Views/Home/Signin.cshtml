@@ -1,0 +1,32 @@
+@model UserLogin
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div>
+        <h1>Log In</h1>
+        <p>Don't have an account? <a href="/register">Create an account</a></p>
+    </div>
+    <div>
+        <h4 id="logintoview">@TempData["OneUser.FirstName"]</h4>
+        <form asp-action="Login" asp-controller="Home" method="POST">
+            <span asp-validation-for="LogEmail"></span>
+            <div class="regloglist">
+                <label asp-for="LogEmail"></label>
+                <input asp-for="LogEmail">
+            </div>
+            <span asp-validation-for="LogPassword"></span>
+            <div class="regloglist">
+                <label asp-for="LogPassword"></label>
+                <input asp-for="LogPassword">
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+</body>
+</html>
