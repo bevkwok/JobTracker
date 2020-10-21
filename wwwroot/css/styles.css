@@ -51,6 +51,9 @@
 
 span{
     color: red;
+    margin: 0px 10%;
+    font-size: 14px;
+    text-align: center;
 }
 
 #index_body, #reg_log_body{
@@ -205,4 +208,58 @@ span{
 .input_btn:hover{
     color: rgb(172, 172, 172);
     background-color: rgb(9, 74, 94);
+}
+
+.sidenav {
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(83, 134, 150);
+    overflow-x: hidden;
+    padding: 35px 0px;
+}
+
+.sidenav a{
+    text-decoration: none;
+    font-size: 2vw;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    color: #ffffff;
+    display: block;
+    padding: 15px 20px;
+    margin: 20px 0px;
+}
+
+.sidenav a:hover{
+    background-color: rgb(50, 92, 105);
+    font-weight: 600;
+    color: #a5a4a4;
+}
+
+.sidenav i{
+    padding-right: 8px;
+    color: white;
+}
+
+.dashboard_main {
+    margin-left: 20%; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+
+
+.copyright_div{
+    padding: 4px;
+}
+
+.copyright_div p{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+    text-align: center;
+    opacity: 50%;
+
 }

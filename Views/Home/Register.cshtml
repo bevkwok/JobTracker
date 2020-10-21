@@ -8,16 +8,14 @@
 </head>
 <body id="reg_log_body">
     <div class="reg_log_page">
-        <div class="icon">
-            <h2><a href="/"><i class="fas fa-pen-fancy"></i> UApplied</a></h2>
-        </div>
+        <partial name="IconPartial"/>
         <div class="signin_main">
             <h1>Welcome to UApplied</h1>
             @* <p>Use UApplied to help you find the right job and keep track of all the jobs you have applied.</p> *@
             <p>Already have an account? <a href="/signin">Sign in</a></p>
         </div>
         <div class="reg_log_form">
-            <form asp-action="Register" asp-controller="Home" method="POST">
+            <form asp-action="CreateUser" asp-controller="Home" method="POST">
                 <span asp-validation-for="Username"></span>
                 <div class="reg_log_form_input">
                     <label asp-for="Username"></label>
@@ -49,5 +47,6 @@
             </form>
         </div>
     </div>
+    <partial name="CopyrightPartial"/>
 </body>
 </html>

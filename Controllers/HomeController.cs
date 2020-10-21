@@ -53,7 +53,7 @@ namespace JobTracker.Controllers
             }
             else
             {
-                return View(); //the dashboard name
+                return View("Register"); //the dashboard name
             }
         }
 
@@ -72,7 +72,7 @@ namespace JobTracker.Controllers
             if(userInDb == null)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
-                return Index();
+                return RedirectToAction("Signin");
             }
 
             var hasher = new PasswordHasher<User>();
@@ -82,14 +82,14 @@ namespace JobTracker.Controllers
             if(result == 0)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
-                return Index();
+                return RedirectToAction("Signin");
             }
             HttpContext.Session.SetInt32("UserId", userInDb.UserId);
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             return RedirectToAction("Home",new{UserId = theUserId});
         }
 
-        [HttpGet("Logout")]
+        [HttpGet("logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -107,10 +107,10 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
+            User loginUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
 
-            return View("Home");
+            return View("Home", loginUser);
         }
-
     }
 }

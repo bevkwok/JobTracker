@@ -41,11 +41,11 @@ namespace JobTracker
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseSession(); //this needs come before UseMvc
+
             app.UseStaticFiles();
 
             app.UseMvc();
-
-            app.UseSession();
 
             app.UseRouting();
 
