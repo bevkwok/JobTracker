@@ -1,3 +1,4 @@
+@model User
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,15 +7,28 @@
     <title>Your Dashboard</title>
 </head>
 <body>
-    <div class="sidenav">
-        <a href=""><i class="fas fa-list"></i>Job List</a>
-        <a href=""><i class="fas fa-edit"></i>Add Job</a>
-        <a href=""><i class="fas fa-id-badge"></i>Personal Info</a>
-        <a href=""><i class="fas fa-address-book"></i>Contact</a>
-        <a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
-    </div>
+    <partial name="SideNavPartial"/>
     <div class="dashboard_main">
-
+        <div class="dashboard_header">
+            <div class="icon">
+                <h2><i class="fas fa-pen-fancy"></i> UApplied</h2>
+            </div>
+                @* <h3>Hello, @Model.Username</h3> *@
+        </div>
+        <div class="dashboard_job_number">
+            <div>
+                <p>Interested</p>
+            </div>
+            <div>
+                <p>Applied</p>
+            </div>
+            <div>
+                <p>Interview</p>
+            </div>
+        </div>
+        <div class="dashboard_job">
+            <h2>Job</h2>
+        </div>
     </div>
 </body>
 </html>

@@ -112,5 +112,21 @@ namespace JobTracker.Controllers
 
             return View("Home", loginUser);
         }
+
+        [HttpGet("add_job")]
+        public IActionResult AddJob()
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
+
+            return View("AddJob");
+        }
+
+        // [HttpPost("add_new_job")]
+        // public IActionResult AddNewJob()
     }
 }
