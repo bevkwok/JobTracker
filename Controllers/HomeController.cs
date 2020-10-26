@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -127,7 +127,7 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
             return View("AddJob");
-
+        }
         // [HttpPost("add_new_job")]
         // public IActionResult AddNewJob()
     }
