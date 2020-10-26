@@ -33,7 +33,7 @@ namespace JobTracker.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword {get; set;}
-
+        
         public List<Application> AppliedJobs { get; set; }
         public DateTime CreatedAt {get; set;} = DateTime.Now;
         public DateTime UpdateAt {get; set;} = DateTime.Now;
