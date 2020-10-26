@@ -306,3 +306,32 @@ span{
     text-align: center;
     opacity: 50%;
 }
+
+.job_form_title{
+    margin: 1.5vw;
+}
+
+.job_form_title p{
+    font-size: 1.2vw;
+    margin: 1.3vw 0vw 0vw 1.3vw;
+}
+
+.job_form{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.job_form_span{
+    display: block;
+}
+
+.job_form_input{
+    margin: 1.8vw 1.2vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.job_form_input input{
+    padding: 0.5vw;
+}

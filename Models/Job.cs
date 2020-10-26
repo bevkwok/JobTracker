@@ -12,18 +12,18 @@ namespace JobTracker.Models
 
         [Required]
         [MinLength(2)]
-        [Display(Name = "Company Name :")]
+        [Display(Name = "*Company Name :")]
         public string CompanyName { get; set; }
 
 
         [Required]
         [MinLength(2)]
-        [Display(Name = "Job Title :")]
+        [Display(Name = "*Job Title :")]
         public string JobTitle { get; set; }
 
 
         [Required]
-        [Display(Name = "Status :")]
+        [Display(Name = "*Status :")]
         public string JobStatus { get; set; }
 
         [Display(Name = "Applied At :")]
