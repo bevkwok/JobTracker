@@ -99,7 +99,7 @@ namespace JobTracker.Controllers
             return RedirectToAction("Signin");
         }
 
-        [HttpGet("Home/{UserId}")]
+        [HttpGet("home/{UserId}")]
         public IActionResult Home(int UserId)
         {   
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -109,8 +109,10 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
-            User loginUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
-
+            User loginUser = dbContext.Users
+                .Include(user => user.AppliedJobs)
+                .ThenInclude(j => j.Job)
+                .FirstOrDefault(u => u.UserId == theUserId);
 
             return View("Home", loginUser);
         }
@@ -128,7 +130,32 @@ namespace JobTracker.Controllers
             // }
             return View("AddJob");
         }
-        // [HttpPost("add_new_job")]
-        // public IActionResult AddNewJob()
+
+        [HttpPost("add_job/new")]
+        public IActionResult AddNewJob(Job NewJob)
+        {
+            // int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
+
+            if(ModelState.IsValid)
+            {
+                dbContext.Add(NewJob);
+                dbContext.SaveChanges();
+                return RedirectToAction("AddJob");
+            }
+            return AddJob();
+        }
+
+        [HttpGet("personal_info")]
+        public IActionResult PersonalInfo()
+        {
+            return View("PersonalInfo");
+        }
     }
 }
