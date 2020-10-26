@@ -221,7 +221,6 @@ span{
 .input_btn:hover{
     color: rgb(172, 172, 172);
     background-color: rgb(9, 74, 94);
-}
 
 .sidenav {
     height: 100%;
@@ -304,5 +303,4 @@ span{
     color: gray;
     text-align: center;
     opacity: 50%;
-
 }
