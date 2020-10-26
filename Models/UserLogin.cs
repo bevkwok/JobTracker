@@ -10,7 +10,7 @@ namespace JobTracker.Models
         [Required(ErrorMessage = "Email is required")]
         public string LogEmail { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         [Display(Name="Password :")]
         // [DataType(DataType.Password)]
         public string LogPassword {get; set;}

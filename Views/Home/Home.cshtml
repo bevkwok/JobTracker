@@ -1,0 +1,34 @@
+@model User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+</head>
+<body>
+    <partial name="SideNavPartial"/>
+    <div class="dashboard_main">
+        <div class="dashboard_header">
+            <div class="icon">
+                <h2><i class="fas fa-pen-fancy"></i> UApplied</h2>
+            </div>
+                @* <h3>Hello, @Model.Username</h3> *@
+        </div>
+        <div class="dashboard_job_number">
+            <div>
+                <p>Interested</p>
+            </div>
+            <div>
+                <p>Applied</p>
+            </div>
+            <div>
+                <p>Interview</p>
+            </div>
+        </div>
+        <div class="dashboard_job">
+            <h2>Job</h2>
+        </div>
+    </div>
+</body>
+</html>
