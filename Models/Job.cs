@@ -26,11 +26,11 @@ namespace JobTracker.Models
         [Display(Name = "Status :")]
         public string JobStatus { get; set; }
 
-
         [Display(Name = "Applied At :")]
         public string AppliedAt { get; set; }
 
         [Display(Name = "Date Applied :")]
+        [DataType(DataType.Date)]
         public DateTime AppliedDate { get; set; }
 
 

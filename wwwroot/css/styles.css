@@ -281,6 +281,7 @@ span{
 
 .dashboard_job_number p{
     font-size: 1.5vw;
+    color: gray;
 }
 
 .dashboard_header h3,h2{

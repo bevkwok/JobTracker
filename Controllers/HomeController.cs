@@ -72,6 +72,7 @@ namespace JobTracker.Controllers
             if(userInDb == null)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+
                 return Signin();
             }
 
@@ -82,6 +83,7 @@ namespace JobTracker.Controllers
             if(result == 0)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+
                 return Signin();
             }
             HttpContext.Session.SetInt32("UserId", userInDb.UserId);
@@ -125,7 +127,8 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
             return View("AddJob");
-        }
 
+        // [HttpPost("add_new_job")]
+        // public IActionResult AddNewJob()
     }
 }
