@@ -8,20 +8,25 @@
 </head>
 <body id="reg_log_body">
     <div class="reg_log_page">
+
         <partial name="IconPartial"/>
+
         <div class="signin_main">
             <h1>Log In</h1>
             <p>Don't have an account? <a href="/register">Create an account</a></p>
         </div>
+
         <div class="reg_log_form">
             <h4 id="logintoview">@TempData["OneUser.FirstName"]</h4>
             <form asp-action="Login" asp-controller="Home" method="POST">
-                <span asp-validation-for="LogEmail"></span>
+
+                <span class="logReg_span" asp-validation-for="LogEmail"></span>
+                <span class="logReg_span" asp-validation-for="LogPassword"></span>
+
                 <div class="reg_log_form_input">
                     <label asp-for="LogEmail"></label>
                     <input asp-for="LogEmail">
                 </div>
-                <span asp-validation-for="LogPassword"></span>
                 <div class="reg_log_form_input">
                     <label asp-for="LogPassword"></label>
                     <input asp-for="LogPassword">
