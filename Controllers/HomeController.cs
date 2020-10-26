@@ -24,13 +24,13 @@ namespace JobTracker.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         [HttpGet("register")]
         public IActionResult Register()
         {
-            return View();
+            return View("Register");
         }
 
         [HttpPost("creat_user")]
@@ -41,7 +41,7 @@ namespace JobTracker.Controllers
                 if(dbContext.Users.Any(u => u.Email == newUser.Email))
                 {
                     ModelState.AddModelError("Email", "Email already in use!");
-                    return RedirectToAction("Register");
+                    return Register();
                 }
                 PasswordHasher<User> Hasher = new PasswordHasher<User>();
                 newUser.Password = Hasher.HashPassword(newUser, newUser.Password);
@@ -53,14 +53,14 @@ namespace JobTracker.Controllers
             }
             else
             {
-                return View(); //the dashboard name
+                return Register();
             }
         }
 
         [HttpGet("signin")]
         public IActionResult Signin()
         {
-            return View();
+            return View("Signin");
         }
 
 
@@ -72,7 +72,7 @@ namespace JobTracker.Controllers
             if(userInDb == null)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
-                return Index();
+                return Signin();
             }
 
             var hasher = new PasswordHasher<User>();
@@ -82,14 +82,14 @@ namespace JobTracker.Controllers
             if(result == 0)
             {
                 ModelState.AddModelError("LogEmail", "Invalid Email/Password");
-                return Index();
+                return Signin();
             }
             HttpContext.Session.SetInt32("UserId", userInDb.UserId);
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             return RedirectToAction("Home",new{UserId = theUserId});
         }
 
-        [HttpGet("Logout")]
+        [HttpGet("logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -107,9 +107,24 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
+            User loginUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
 
-            return View("Home");
+            return View("Home", loginUser);
+        }
+
+        [HttpGet("add_job")]
+        public IActionResult AddJob()
+        {
+            // int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
+            return View("AddJob");
         }
 
     }

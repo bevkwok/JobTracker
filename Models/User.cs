@@ -19,14 +19,15 @@ namespace JobTracker.Models
         [Required(ErrorMessage = "Email is required")]
         public string Email {get; set;}
 
-        [Required]
-        [Display(Name = "Password")]
+
+        [Required(ErrorMessage = "Password is required")]
+        [Display(Name = "Password :")]
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage="Password must have at least 8 characters.")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage="Password must contain at least 1 number, 1 letter and a special character")]
         public string Password {get; set;}
 
-        [Required]
+        [Required(ErrorMessage = "Confirm Password is required")]
         [NotMapped]
         [Compare("Password")]
         [DataType(DataType.Password)]

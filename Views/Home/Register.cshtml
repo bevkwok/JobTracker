@@ -8,6 +8,7 @@
 </head>
 <body id="reg_log_body">
     <div class="reg_log_page">
+        <partial name="IconPartial"/>
         <div class="icon">
             <h2><a href="/"><i class="fas fa-pen-fancy"></i> UApplied</a></h2>
         </div>
@@ -17,23 +18,27 @@
             <p>Already have an account? <a href="/signin">Sign in</a></p>
         </div>
         <div class="reg_log_form">
-            <form asp-action="Register" asp-controller="Home" method="POST">
-                <span asp-validation-for="Username"></span>
+
+            <form asp-action="CreateUser" asp-controller="Home" method="POST">
+                <span class="logReg_span" asp-validation-for="Username"></span>
                 <div class="reg_log_form_input">
                     <label asp-for="Username"></label>
                     <input asp-for="Username">
                 </div>
-                <span asp-validation-for="Email"></span>
+                <span class="logReg_span" asp-validation-for="Email"></span>
+
+
                 <div class="reg_log_form_input">
                     <label asp-for="Email"></label>
                     <input asp-for="Email">
                 </div>
-                <span asp-validation-for="Password"></span>
+                <span class="logReg_span" asp-validation-for="Password"></span>
+
                 <div class="reg_log_form_input">
                     <label asp-for="Password"></label>
                     <input asp-for="Password">
                 </div>
-                <span asp-validation-for="ConfirmPassword"></span>
+                <span class="logReg_span" asp-validation-for="ConfirmPassword"></span>
                 <div class="reg_log_form_input">
                     <label asp-for="ConfirmPassword"></label>
                     <input asp-for="ConfirmPassword">
@@ -49,5 +54,6 @@
             </form>
         </div>
     </div>
+    <partial name="CopyrightPartial"/>
 </body>
 </html>
