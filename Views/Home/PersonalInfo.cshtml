@@ -11,7 +11,45 @@
         <partial name="SideNavPartial"/>
     </div>
     <div class="dashboard_main">
-        
+            <form asp-action="EditUser" asp-controller="Home" method="POST">
+                <span class="logReg_span" asp-validation-for="Username"></span>
+                <div class="">
+                    <label asp-for="Username"></label>
+                    <input asp-for="Username">
+                </div>
+                <span class="logReg_span" asp-validation-for="Email"></span>
+
+
+                <div class="">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email">
+                </div>
+                
+                <span class="logReg_span" asp-validation-for="Password"></span>
+
+                <div class="">
+                    <label for="OldPassword">Old Password :</label>
+                    <input type="text" name="OldPassword" id="OldPassword">
+                </div>
+
+                <div class="">
+                    <label asp-for="Password">New Password :</label>
+                    <input asp-for="Password">
+                </div>
+                <span class="logReg_span" asp-validation-for="ConfirmPassword"></span>
+                <div class="">
+                    <label asp-for="ConfirmPassword">Confirm New Password :</label>
+                    <input asp-for="ConfirmPassword">
+                </div>
+                <div>
+                    <ul>
+                        <li>One special character</li>
+                        <li>minimum 8 characters</li>
+                        <li>One number</li>
+                    </ul>
+                </div>
+                <input type="submit" value="REGISTER" class="input_btn">
+            </form>
     </div>
 </body>
 </html>

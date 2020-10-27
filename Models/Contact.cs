@@ -36,6 +36,10 @@ namespace JobTracker.Models
         [Display(Name = "Thank you letter")]
         public bool ThankYouLetter { get; set; }
 
+        public int UserId { get; set; }
+
+        public User Candidate { get; set; }
+
         public int JobId { get; set; }
 
         public Job WorkFor { get; set; }

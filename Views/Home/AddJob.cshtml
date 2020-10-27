@@ -1,4 +1,4 @@
-@model Job
+@model AddJobWrapper
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,57 +18,57 @@
         <form asp-action="AddNewJob" asp-controller="Home" method="POST">
             <div class="job_form row">
                 <div class="job_sub_form col">
-                    <span class="job_form_span" asp-validation-for="CompanyName"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.CompanyName"></span>
                     <div class="job_form_input">
-                        <label asp-for="CompanyName"></label>
-                        <input asp-for="CompanyName">
+                        <label asp-for="TheJob.CompanyName"></label>
+                        <input asp-for="TheJob.CompanyName">
                     </div>
-                    <span class="job_form_span" asp-validation-for="JobTitle"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.JobTitle"></span>
                     <div class="job_form_input">
-                        <label asp-for="JobTitle"></label>
-                        <input asp-for="JobTitle">
+                        <label asp-for="TheJob.JobTitle"></label>
+                        <input asp-for="TheJob.JobTitle">
                     </div>
-                    <span class="job_form_span" asp-validation-for="JobStatus"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.JobStatus"></span>
                     <div class="job_form_input">
-                        <label asp-for="JobStatus"></label>
-                        <input asp-for="JobStatus">
+                        <label asp-for="TheJob.JobStatus"></label>
+                        <input asp-for="TheJob.JobStatus">
                     </div>
-                    <span class="job_form_span" asp-validation-for="AppliedAt"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.AppliedAt"></span>
                     <div class="job_form_input">
-                        <label asp-for="AppliedAt"></label>
-                        <input asp-for="AppliedAt">
+                        <label asp-for="TheJob.AppliedAt"></label>
+                        <input asp-for="TheJob.AppliedAt">
                     </div>
-                    <span class="job_form_span" asp-validation-for="AppliedDate"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.AppliedDate"></span>
                     <div class="job_form_input">
-                        <label asp-for="AppliedDate"></label>
-                        <input asp-for="AppliedDate">
+                        <label asp-for="TheJob.AppliedDate"></label>
+                        <input asp-for="TheJob.AppliedDate">
                     </div>
                 </div>
                 <div class="job_sub_form col">
-                    <span class="job_form_span" asp-validation-for="JobType"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.JobType"></span>
                     <div class="job_form_input">
-                        <label asp-for="JobType"></label>
-                        <input asp-for="JobType">
+                        <label asp-for="TheJob.JobType"></label>
+                        <input asp-for="TheJob.JobType">
                     </div>
-                    <span class="job_form_span" asp-validation-for="CompanyWebsite"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.CompanyWebsite"></span>
                     <div class="job_form_input">
-                        <label asp-for="CompanyWebsite"></label>
-                        <input asp-for="CompanyWebsite">
+                        <label asp-for="TheJob.CompanyWebsite"></label>
+                        <input asp-for="TheJob.CompanyWebsite">
                     </div>
-                    <span class="job_form_span" asp-validation-for="ApplicationLink"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.ApplicationLink"></span>
                     <div class="job_form_input">
-                        <label asp-for="ApplicationLink"></label>
-                        <input asp-for="ApplicationLink">
+                        <label asp-for="TheJob.ApplicationLink"></label>
+                        <input asp-for="TheJob.ApplicationLink">
                     </div>
-                    <span class="job_form_span" asp-validation-for="RequiredSkill"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.RequiredSkill"></span>
                     <div class="job_form_input">
-                        <label asp-for="RequiredSkill"></label>
-                        <input asp-for="RequiredSkill">
+                        <label asp-for="TheJob.RequiredSkill"></label>
+                        <input asp-for="TheJob.RequiredSkill">
                     </div>
-                    <span class="job_form_span" asp-validation-for="JobNote"></span>
+                    <span class="job_form_span" asp-validation-for="TheJob.JobNote"></span>
                     <div class="job_form_input">
-                        <label asp-for="JobNote"></label>
-                        <textarea asp-for="JobNote"></textarea>
+                        <label asp-for="TheJob.JobNote"></label>
+                        <textarea asp-for="TheJob.JobNote"></textarea>
                     </div>
                 </form>
             </div>

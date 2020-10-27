@@ -103,6 +103,7 @@ namespace JobTracker.Controllers
         public IActionResult Home(int UserId)
         {   
             int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
 
             // if(theUserId == null)
             // {
@@ -111,16 +112,38 @@ namespace JobTracker.Controllers
 
             User loginUser = dbContext.Users
                 .Include(user => user.AppliedJobs)
-                .ThenInclude(j => j.Job)
+                .ThenInclude(j => j.JobContact)
                 .FirstOrDefault(u => u.UserId == theUserId);
 
             return View("Home", loginUser);
         }
 
-        [HttpGet("add_job")]
+        [HttpGet("{UserId}/job/list")]
+        public IActionResult JobList()
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
+
+
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
+
+            User loginUser = dbContext.Users
+                .Include(user => user.AppliedJobs)
+                .ThenInclude(j => j.JobContact)
+                .FirstOrDefault(u => u.UserId == theUserId);
+
+            return View("JobList", loginUser);
+        }
+
+        [HttpGet("{UserId}/add_job")]
         public IActionResult AddJob()
         {
-            // int? theUserId = HttpContext.Session.GetInt32("UserId");
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
+
 
             // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
@@ -128,7 +151,17 @@ namespace JobTracker.Controllers
             // {
             //     return Logout();
             // }
-            return View("AddJob");
+
+            AddJobWrapper WrapperModel = new AddJobWrapper();
+
+            WrapperModel.TheUser = dbContext.Users
+                .Include(user => user.AppliedJobs)
+                .ThenInclude(j => j.JobContact)
+                .FirstOrDefault(u => u.UserId == theUserId);
+            
+            // WrapperModel.TheJob = dbContext.
+            
+            return View("AddJob", WrapperModel);
         }
 
         [HttpPost("add_job/new")]
@@ -152,10 +185,52 @@ namespace JobTracker.Controllers
             return AddJob();
         }
 
-        [HttpGet("personal_info")]
+        [HttpGet("{UserId}/personal_info")]
         public IActionResult PersonalInfo()
         {
-            return View("PersonalInfo");
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
+
+
+            User loginUser = dbContext.Users
+                .Include(user => user.AppliedJobs)
+                .ThenInclude(j => j.JobContact)
+                .FirstOrDefault(u => u.UserId == theUserId);
+
+            return View("PersonalInfo", loginUser);
+        }
+
+        [HttpPost("edit/user/{UserId}")]
+        public IActionResult EditUser(User EditedUser, string OldPassword)
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            User loginUser = dbContext.Users
+                .FirstOrDefault(u => u.UserId == theUserId);
+
+            PasswordHasher<User> Hasher = new PasswordHasher<User>();
+            
+            if(ModelState.IsValid)
+            {
+                // if(loginUser.Password == )
+
+                EditedUser.Password = Hasher.HashPassword(EditedUser, EditedUser.Password);
+
+                if(dbContext.Users.Any(u => u.Email == EditedUser.Email))
+                {
+                    ModelState.AddModelError("Email", "Email already in use!");
+                    return Register();
+                }
+                dbContext.Add(EditedUser);
+                dbContext.SaveChanges();
+                HttpContext.Session.SetInt32("UserId", EditedUser.UserId);
+
+                return RedirectToAction("Home",new{UserId = theUserId}); //
+            }
+            else
+            {
+                return PersonalInfo();
+            }
         }
     }
 }
