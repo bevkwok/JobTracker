@@ -52,7 +52,9 @@ namespace JobTracker.Models
         [Display(Name = "Note :")]
         public string JobNote { get; set; }
 
-        public List<Application> Applicants { get; set; }
+        public int UserId { get; set; }
+
+        public User SavedBy { get; set; }
 
         public List<Contact> JobContact { get; set; }
 
