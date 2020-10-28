@@ -110,12 +110,18 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
-            User loginUser = dbContext.Users
+            HomeWrapper HomeWMod = new HomeWrapper();
+
+            HomeWMod.TheUser = dbContext.Users
                 .Include(user => user.AppliedJobs)
                 .ThenInclude(j => j.JobContact)
                 .FirstOrDefault(u => u.UserId == theUserId);
 
-            return View("Home", loginUser);
+            HomeWMod.JobList = dbContext.Jobs
+                .Where(jsu => jsu.UserId == theUserId)
+                .ToList();
+
+            return View("Home", HomeWMod);
         }
 
         [HttpGet("{UserId}/job/list")]
@@ -130,12 +136,18 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
-            User loginUser = dbContext.Users
+            HomeWrapper HomeWMod = new HomeWrapper();
+
+            HomeWMod.TheUser = dbContext.Users
                 .Include(user => user.AppliedJobs)
                 .ThenInclude(j => j.JobContact)
                 .FirstOrDefault(u => u.UserId == theUserId);
 
-            return View("JobList", loginUser);
+            HomeWMod.JobList = dbContext.Jobs
+                .Where(jsu => jsu.UserId == theUserId)
+                .ToList();
+
+            return View("JobList", HomeWMod);
         }
 
         [HttpGet("{UserId}/add_job")]
@@ -184,6 +196,8 @@ namespace JobTracker.Controllers
             }
             return AddJob();
         }
+
+
 
         [HttpGet("{UserId}/personal_info")]
         public IActionResult PersonalInfo()

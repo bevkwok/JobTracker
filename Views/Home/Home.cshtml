@@ -1,4 +1,4 @@
-@model User
+@model HomeWrapper
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +28,19 @@
         </div>
         <div class="dashboard_job">
             <h2>Job</h2>
+            <div>
+                @if(Model.JobList != null)
+                {
+                    @foreach(Job job in Model.JobList)
+                    {
+                        <h4>@job.JobTitle</h4>
+                        <p>@job.CompanyName</p>
+                    }
+                }
+                
+            </div>
         </div>
+        
     </div>
 </body>
 </html>
