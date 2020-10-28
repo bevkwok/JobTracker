@@ -31,7 +31,16 @@
                     <span class="job_form_span" asp-validation-for="TheJob.JobStatus"></span>
                     <div class="job_form_input">
                         <label asp-for="TheJob.JobStatus"></label>
-                        <input asp-for="TheJob.JobStatus">
+                        <div class="job_form_radio">
+                            <div>
+                            <input asp-for="TheJob.JobStatus" type="radio" value="Interested" class="radio_option">Interested<br />
+                            <input asp-for="TheJob.JobStatus" type="radio" value="Applied" class="radio_option">Applied<br />
+                            </div>
+                            <div>
+                            <input asp-for="TheJob.JobStatus" type="radio" value="Interviewed" class="radio_option">Interviewed<br />
+                            <input asp-for="TheJob.JobStatus" type="radio" value="Rejected" class="radio_option">Rejected<br />
+                            </div>
+                        </div>
                     </div>
                     <span class="job_form_span" asp-validation-for="TheJob.AppliedAt"></span>
                     <div class="job_form_input">
@@ -48,7 +57,16 @@
                     <span class="job_form_span" asp-validation-for="TheJob.JobType"></span>
                     <div class="job_form_input">
                         <label asp-for="TheJob.JobType"></label>
-                        <input asp-for="TheJob.JobType">
+                        <div class="job_form_radio">
+                            <div>
+                            <input asp-for="TheJob.JobType" type="radio" value="FullTime" class="radio_option">Full-Time<br />
+                            <input asp-for="TheJob.JobType" type="radio" value="PartTime" class="radio_option">Part-Time<br />
+                            </div>
+                            <div>
+                            <input asp-for="TheJob.JobType" type="radio" value="Contract" class="radio_option">Contract<br />
+                            <input asp-for="TheJob.JobType" type="radio" value="Seasonal" class="radio_option">Seasonal<br />
+                            </div>
+                        </div>
                     </div>
                     <span class="job_form_span" asp-validation-for="TheJob.CompanyWebsite"></span>
                     <div class="job_form_input">

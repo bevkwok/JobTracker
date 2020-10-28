@@ -332,6 +332,16 @@ span{
     justify-content: space-between;
 }
 
-.job_form_input input{
+.job_form_radio{
+    display: flex;
+    justify-content: center;
+}
+
+.radio_option{
+    margin: 0.5vw 0.5vw;
+}
+
+.job_form_input input,textarea{
     padding: 0.5vw;
 }
+
