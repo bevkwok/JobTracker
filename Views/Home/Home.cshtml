@@ -17,12 +17,15 @@
         </div>
         <div class="dashboard_job_number">
             <div>
+                <p name="numOfInterestedJob"></p>
                 <p>Interested</p>
             </div>
             <div>
+                <p name="numOfAppliedJob"></p>
                 <p>Applied</p>
             </div>
             <div>
+                <p name="numOfInterviewJob"></p>
                 <p>Interview</p>
             </div>
         </div>
@@ -33,8 +36,10 @@
                 {
                     @foreach(Job job in Model.JobList)
                     {
-                        <h4>@job.JobTitle</h4>
-                        <p>@job.CompanyName</p>
+                        <div class="dashboard_job_jobCard">
+                            <h4>@job.JobTitle</h4>
+                            <p>@job.CompanyName</p>
+                        </div>
                     }
                 }
                 
