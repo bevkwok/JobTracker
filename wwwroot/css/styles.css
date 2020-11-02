@@ -261,7 +261,11 @@ span{
     margin-left: 20%; /* Same as the width of the sidenav */
     padding: 3vw;
     background-color: rgb(238, 246, 248);
-    height: 100%;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .dashboard_header{
@@ -345,3 +349,7 @@ span{
     padding: 0.5vw;
 }
 
+.btn_frame{
+    padding: 1.5vw;
+    display: block;
+}

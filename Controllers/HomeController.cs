@@ -164,22 +164,22 @@ namespace JobTracker.Controllers
             //     return Logout();
             // }
 
-            AddJobWrapper WrapperModel = new AddJobWrapper();
+            // AddJobWrapper WrapperModel = new AddJobWrapper();
 
-            WrapperModel.TheUser = dbContext.Users
-                .Include(user => user.AppliedJobs)
-                .ThenInclude(j => j.JobContact)
-                .FirstOrDefault(u => u.UserId == theUserId);
+            // WrapperModel.TheUser = dbContext.Users
+            //     .Include(user => user.AppliedJobs)
+            //     .ThenInclude(j => j.JobContact)
+            //     .FirstOrDefault(u => u.UserId == theUserId);
             
             // WrapperModel.TheJob = dbContext.
             
-            return View("AddJob", WrapperModel);
+            return View("AddJob");
         }
 
         [HttpPost("add_job/new")]
         public IActionResult AddNewJob(Job NewJob)
         {
-            // int? theUserId = HttpContext.Session.GetInt32("UserId");
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
 
             // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
@@ -190,9 +190,10 @@ namespace JobTracker.Controllers
 
             if(ModelState.IsValid)
             {
+                NewJob.UserId = (int)theUserId;
                 dbContext.Add(NewJob);
                 dbContext.SaveChanges();
-                return RedirectToAction("AddJob");
+                return RedirectToAction("AddJob",new{UserId = theUserId});
             }
             return AddJob();
         }
