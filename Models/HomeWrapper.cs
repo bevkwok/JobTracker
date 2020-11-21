@@ -8,5 +8,12 @@ namespace JobTracker.Models
     {
     public User TheUser { get; set; }
     public List<Job> JobList { get; set; }
+
+    public List<Job> InterestedJob { get; set; }
+
+    public List<Job> AppliedJob { get; set; }
+
+    public List<Job> InterviewedJob { get; set; }
+
     }
 }

@@ -21,7 +21,7 @@ namespace JobTracker.Models
 
 
         [Required(ErrorMessage = "Password is required")]
-        [Display(Name = "Password :")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage="Password must have at least 8 characters.")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage="Password must contain at least 1 number, 1 letter and a special character")]
