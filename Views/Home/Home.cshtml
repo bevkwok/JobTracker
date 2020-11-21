@@ -10,39 +10,66 @@
     <partial name="SideNavPartial"/>
     <div class="dashboard_main">
         <div class="dashboard_header">
-            <div class="icon">
-                <h2><i class="fas fa-pen-fancy"></i> UApplied</h2>
-            </div>
+            <h1 class="middle">Job</h1>
+            @* <div class="icon">
+                <h3><i class="fas fa-pen-fancy"></i>UApplied</h3>
+            </div> *@
                 @* <h3>Hello, @Model.Username</h3> *@
         </div>
         <div class="dashboard_job_number">
             <div>
                 <p name="numOfInterestedJob"></p>
                 <p>Interested</p>
+                @foreach(Job j in Model.JobList)
+                    {
+                        var count = 0;
+                        if(j.JobStatus == "Interested")
+                        {
+                            count++;
+                        }
+                        <p class="job_num">@count</p>
+                    }
             </div>
             <div>
                 <p name="numOfAppliedJob"></p>
                 <p>Applied</p>
+                @foreach(Job j in Model.JobList)
+                    {
+                        var count = 0;
+                        if(j.JobStatus == "Applied")
+                        {
+                            count++;
+                        }
+                        <p class="job_num">@count</p>
+                    }
             </div>
             <div>
                 <p name="numOfInterviewJob"></p>
                 <p>Interview</p>
+                @foreach(Job j in Model.JobList)
+                    {
+                        var count = 0;
+                        if(j.JobStatus == "Interview")
+                        {
+                            count++;
+                        }
+                        <p class="job_num">@count</p>
+                    }
             </div>
         </div>
         <div class="dashboard_job">
-            <h2>Job</h2>
-            <div>
+            <div class="job_card">
                 @if(Model.JobList != null)
                 {
                     @foreach(Job job in Model.JobList)
                     {
                         <div class="dashboard_job_jobCard">
-                            <h4>@job.JobTitle</h4>
-                            <p>@job.CompanyName</p>
+                            <h5>@job.CompanyName</h5>
+                            <p>@job.JobTitle</p>
+                            <p class="jobCard_status">@job.JobStatus</p>
                         </div>
                     }
                 }
-                
             </div>
         </div>
         

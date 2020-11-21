@@ -7,6 +7,9 @@
     /* font-family: 'Poppins', sans-serif; */
 }
 
+h2 {
+    text-transform: uppercase;
+}
 .icon{
     padding: 15px;
 }
@@ -32,7 +35,7 @@
     background: linear-gradient( rgba(77, 177, 207, 0.3), rgba(77, 177, 207, 0.3) );
 }
 
-.nav_title h2{
+.nav_title h3{
     padding: 30px 40px;
 }
 
@@ -54,6 +57,20 @@ span{
     margin: 0px 10%;
     font-size: 14px;
     text-align: center;
+}
+
+.absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.middle {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 35px;
+    letter-spacing: 5px;
 }
 
 #index_body, #reg_log_body{
@@ -94,6 +111,7 @@ span{
     line-height: 1.5;
     padding: 20px;
     font-size: 2vw;
+    font-family: 'Poppins', sans-serif;
 }
 
 .index_main_btn{
@@ -231,6 +249,8 @@ span{
     top: 0;
     left: 0;
     background-color: rgb(83, 134, 150);
+    background-image: linear-gradient(to right top, rgb(83, 134, 150), rgb(4, 63, 82));
+
     overflow-x: hidden;
     padding: 35px 0px;
 }
@@ -238,8 +258,9 @@ span{
 .sidenav a{
     text-decoration: none;
     font-size: 2vw;
-    font-weight: 400;
-    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
     color: #ffffff;
     display: block;
     padding: 1.2vw 2vw;
@@ -248,8 +269,9 @@ span{
 
 .sidenav a:hover{
     background-color: rgb(50, 92, 105);
-    font-weight: 600;
     color: #a5a4a4;
+    text-decoration: none;
+
 }
 
 .sidenav i{
@@ -260,7 +282,7 @@ span{
 .dashboard_main{
     margin-left: 20%; /* Same as the width of the sidenav */
     padding: 3vw;
-    background-color: rgb(238, 246, 248);
+    /* background-color: rgb(238, 246, 248); */
     min-height: 100%;
     background-size: cover;
     background-position: center;
@@ -275,7 +297,7 @@ span{
 }
 
 .dashboard_job_number{
-    background-color: white;
+    background-color: rgb(238, 246, 248);
     padding: 15px 25px;
     margin: 20px 30px;
     display: flex;
@@ -288,13 +310,18 @@ span{
     color: gray;
 }
 
-.dashboard_header h3,h2{
+.dashboard_header h3,h1{
     padding: 0vw 2vw;
+    text-align: center;
+    font-size: 5vw;
+    text-transform: uppercase;
+    display: block;
 }
 
-.dashboard_job h2{
+.dashboard_job h1{
     padding: 2vw 3vw;
-    font-size: 3vw;
+    font-size: 4vw;
+    text-transform: uppercase;
 }
 
 
@@ -311,6 +338,21 @@ span{
     opacity: 50%;
 }
 
+.job_card {
+    width: 330px;
+    color: white;
+    background-image: linear-gradient(to left bottom, rgb(83, 134, 150), rgb(4, 63, 82));
+    padding: 20px 10px 10px 10px;
+    margin: 20px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 10px 10px rgb(212, 212, 212);
+}
+
+.jobCard_status{
+    color: rgb(83, 134, 150);
+}
+
 .job_form_title{
     margin: 1.5vw;
 }
@@ -323,7 +365,7 @@ span{
 .job_form{
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: top;
 }
 
 .job_form_span{
@@ -353,3 +395,4 @@ span{
     padding: 1.5vw;
     display: block;
 }
+
