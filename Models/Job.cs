@@ -31,7 +31,7 @@ namespace JobTracker.Models
 
         [Display(Name = "Date Applied :")]
         [DataType(DataType.Date)]
-        public DateTime AppliedDate { get; set; }
+        public DateTime? AppliedDate { get; set; }
 
 
         [Display(Name = "Job Type :")]
