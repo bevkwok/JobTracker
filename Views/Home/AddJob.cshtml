@@ -11,8 +11,12 @@
         <partial name="SideNavPartial"/>
     </div>
     <div class="dashboard_main">
+        <div class="dashboard_header">
+            <div class="icon">
+                <h3><i class="fas fa-pen-fancy"></i>Add Job</h3>
+            </div> 
+        </div>
         <div class="job_form_title">
-            <h2 class="middle">Add Job</h2>
             <p>* = required field</p>
         </div>
         <form asp-action="AddNewJob" asp-controller="Home" method="POST">

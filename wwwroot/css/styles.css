@@ -313,7 +313,7 @@ span{
 .dashboard_header h3,h1{
     padding: 0vw 2vw;
     text-align: center;
-    font-size: 5vw;
+    font-size: 4vw;
     text-transform: uppercase;
     display: block;
 }
@@ -354,7 +354,7 @@ span{
 }
 
 .job_form_title{
-    margin: 1.5vw;
+    margin: 1.5vw 0vw;
 }
 
 .job_form_title p{

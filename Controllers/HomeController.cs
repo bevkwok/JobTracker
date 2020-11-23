@@ -180,6 +180,7 @@ namespace JobTracker.Controllers
         public IActionResult AddNewJob(Job NewJob)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
+            
 
             // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
