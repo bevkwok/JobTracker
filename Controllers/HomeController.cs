@@ -49,7 +49,7 @@ namespace JobTracker.Controllers
                 dbContext.SaveChanges();
                 HttpContext.Session.SetInt32("UserId", newUser.UserId);
                 int? theUserId = HttpContext.Session.GetInt32("UserId");
-                return RedirectToAction("Home",new{UserId = theUserId}); //
+                return RedirectToAction("Home",new{UserId = theUserId}); 
             }
             else
             {
@@ -105,10 +105,10 @@ namespace JobTracker.Controllers
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             ViewBag.Id = theUserId;
 
-            // if(theUserId == null)
-            // {
-            //     return Logout();
-            // }
+            if(theUserId == null)
+            {
+                return Logout();
+            }
 
             HomeWrapper HomeWMod = new HomeWrapper();
 
@@ -131,10 +131,10 @@ namespace JobTracker.Controllers
             ViewBag.Id = theUserId;
 
 
-            // if(theUserId == null)
-            // {
-            //     return Logout();
-            // }
+            if(theUserId == null)
+            {
+                return Logout();
+            }
 
             HomeWrapper HomeWMod = new HomeWrapper();
 
@@ -157,12 +157,12 @@ namespace JobTracker.Controllers
             ViewBag.Id = theUserId;
 
 
-            // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+            User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
-            // if(theUserId == null)
-            // {
-            //     return Logout();
-            // }
+            if(theUserId == null)
+            {
+                return Logout();
+            }
 
             // AddJobWrapper WrapperModel = new AddJobWrapper();
 
@@ -182,19 +182,19 @@ namespace JobTracker.Controllers
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             
 
-            // User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+            User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
 
-            // if(theUserId == null)
-            // {
-            //     return Logout();
-            // }
+            if(theUserId == null)
+            {
+                return Logout();
+            }
 
             if(ModelState.IsValid)
             {
                 NewJob.UserId = (int)theUserId;
                 dbContext.Add(NewJob);
                 dbContext.SaveChanges();
-                return RedirectToAction("AddJob",new{UserId = theUserId});
+                return RedirectToAction("Home",new{UserId = theUserId});
             }
             return AddJob();
         }
@@ -207,6 +207,10 @@ namespace JobTracker.Controllers
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             ViewBag.Id = theUserId;
 
+            // if(theUserId == null)
+            // {
+            //     return Logout();
+            // }
 
             User loginUser = dbContext.Users
                 .Include(user => user.AppliedJobs)
@@ -225,28 +229,61 @@ namespace JobTracker.Controllers
                 .FirstOrDefault(u => u.UserId == theUserId);
 
             PasswordHasher<User> Hasher = new PasswordHasher<User>();
-            
+
+            var result =  Hasher.VerifyHashedPassword(loginUser, loginUser.Password, OldPassword);
+
+            if(result == 0)
+            {
+                ModelState.AddModelError("Password", "Incorrect old password!");
+
+                return PersonalInfo();
+            }
+
             if(ModelState.IsValid)
             {
-                // if(loginUser.Password == )
 
                 EditedUser.Password = Hasher.HashPassword(EditedUser, EditedUser.Password);
 
-                if(dbContext.Users.Any(u => u.Email == EditedUser.Email))
+                if(dbContext.Users.Any(u => u.Email == EditedUser.Email) && EditedUser.Email != loginUser.Email)
                 {
                     ModelState.AddModelError("Email", "Email already in use!");
-                    return Register();
+                    return PersonalInfo();
                 }
-                dbContext.Add(EditedUser);
+                loginUser.Username = EditedUser.Username;
+                loginUser.Email = EditedUser.Email;
+                loginUser.Password = EditedUser.Password;
+                loginUser.UpdateAt = DateTime.Now;
+
                 dbContext.SaveChanges();
                 HttpContext.Session.SetInt32("UserId", EditedUser.UserId);
 
-                return RedirectToAction("Home",new{UserId = theUserId}); //
+                return RedirectToAction("Home",new{UserId = theUserId}); 
             }
             else
             {
                 return PersonalInfo();
             }
+        }
+
+        [HttpGet("/job/delete/{id}")]
+        public IActionResult DeleteWedding(int id)
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            if(theUserId == null)
+            {
+                return Logout();
+            }
+            Job ToDelete = dbContext.Jobs
+            .FirstOrDefault(w => w.JobId == id);
+
+            if(ToDelete == null || ToDelete.UserId != (int)theUserId)
+            {
+                return RedirectToAction("Home",new{UserId = theUserId});
+            }
+            dbContext.Remove(ToDelete);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("Dashboard",new{UserId = theUserId});
         }
     }
 }

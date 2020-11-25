@@ -17,60 +17,35 @@
                 @* <h4>Hello, @Model.TheUser.Username</h4> *@
         </div>
         <div class="dashboard_job_number">
-            <div>
-                <p name="numOfInterestedJob"></p>
-                <p>Interested</p>
-                @foreach(Job j in Model.JobList)
-                    {
-                        var count = 0;
-                        if(j.JobStatus == "Interested")
-                        {
-                            count++;
-                        }
-                        <p class="job_num">@count</p>
-                    }
+            <div class="job_number_board">
+                <p class="job_number_board-type">Applied</p>
+                <p class="job_num">
+                @Model.JobList.Where(j => j.JobStatus == "Applied").Count()
+                </p>
             </div>
-            <div>
-                <p name="numOfAppliedJob"></p>
-                <p>Applied</p>
-                @foreach(Job j in Model.JobList)
-                    {
-                        var count = 0;
-                        if(j.JobStatus == "Applied")
-                        {
-                            count++;
-                        }
-                        <p class="job_num">@count</p>
-                    }
-            </div>
-            <div>
-                <p name="numOfInterviewJob"></p>
-                <p>Interview</p>
-                @foreach(Job j in Model.JobList)
-                    {
-                        var count = 0;
-                        if(j.JobStatus == "Interview")
-                        {
-                            count++;
-                        }
-                        <p class="job_num">@count</p>
-                    }
+            <div class="job_number_board">
+                <p class="job_number_board-type">Interview</p>
+                <p class="job_num">
+                @Model.JobList.Where(j => j.JobStatus == "Interviewed").Count()
+                </p>
             </div>
         </div>
         <div class="dashboard_job">
-            <div class="job_card">
-                @if(Model.JobList != null)
+            @if(Model.JobList != null)
+            {
+                @foreach(Job job in Model.JobList)
                 {
-                    @foreach(Job job in Model.JobList)
-                    {
+                    <div class="job_card">
                         <div class="dashboard_job_jobCard">
                             <h5>@job.CompanyName</h5>
-                            <p>@job.JobTitle</p>
+                            <p class="job_title">@job.JobTitle</p>
                             <p class="jobCard_status">@job.JobStatus</p>
+                            <a asp-action="EditWedding" asp-controller="Home" asp-route-id="@job.JobId">Edit</a>
+                            <a asp-action="DeleteWedding" asp-controller="Home" asp-route-id="@job.JobId">Delete</a>
                         </div>
-                    }
+                    </div>
                 }
-            </div>
+            }
         </div>
         
     </div>

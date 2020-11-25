@@ -24,6 +24,22 @@ h2 {
     color: rgb(77, 177, 207);
 }
 
+input {
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 1px;
+}
+
+th{
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 300;
+}
+
+thead {
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
 .nav{
     display: flex;
     justify-content: space-between;
@@ -290,24 +306,39 @@ span{
     background-attachment: fixed;
 }
 
-.dashboard_header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+.dashboard_job{
+    padding-left: 0.3vw;
 }
 
 .dashboard_job_number{
     background-color: rgb(238, 246, 248);
-    padding: 15px 25px;
-    margin: 20px 30px;
+    margin: 1.5vw 0vw;
+    padding: 1vw 2vw;
     display: flex;
     justify-content: space-evenly;
     box-shadow: 0 10px 10px -10px rgb(212, 212, 212);
+    line-height: 2vw;
 }
 
 .dashboard_job_number p{
     font-size: 1.5vw;
     color: gray;
+}
+
+.job_number_board .job_number_board-type{
+    font-size: 1vw;
+    color: black;
+    text-transform: uppercase;
+    margin-bottom: 0.5vw;
+}
+
+.dashboard_job_number .job_num{
+    font-size: 4vw;
+    color: white;
+    text-shadow: 2px 2px 0px rgb(4, 63, 82, 0.5);
+    font-weight: 700;
+    text-align: center;
 }
 
 .dashboard_header h3,h1{
@@ -325,6 +356,12 @@ span{
 }
 
 
+.job_title{
+    font-weight: 700;
+    color: rgb(184, 239, 255);
+}
+
+
 
 .copyright_div{
     padding: 4px;
@@ -339,11 +376,11 @@ span{
 }
 
 .job_card {
-    width: 330px;
+    width: 30%;
     color: white;
     background-image: linear-gradient(to left bottom, rgb(83, 134, 150), rgb(4, 63, 82));
     padding: 20px 10px 10px 10px;
-    margin: 20px;
+    margin: 1.5vw 1vw;
     display: inline-block;
     text-align: center;
     box-shadow: 0 10px 10px rgb(212, 212, 212);
@@ -351,6 +388,25 @@ span{
 
 .jobCard_status{
     color: rgb(83, 134, 150);
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 0.1vw;
+}
+
+.job_card a {
+    display: inline-block;
+    color: rgb(4, 63, 82);
+    text-transform: uppercase;
+    background-color: white;
+    margin: 1vw 1vw;
+    padding: 0.3vw 1.5vw;
+    text-decoration: none;
+}
+
+.job_card a:hover{
+    background-color:  rgb(83, 134, 150);
+    text-decoration: none;
+    color: white;
 }
 
 .job_form_title{
@@ -378,6 +434,10 @@ span{
     justify-content: space-between;
 }
 
+.job_form_input label{
+    padding: 0.5vw 1vw;
+}
+
 .job_form_radio{
     display: flex;
     justify-content: center;
@@ -395,4 +455,10 @@ span{
     padding: 1.5vw;
     display: block;
 }
+
+.edit_profile ul{
+    width: 90%;
+    margin: 2vw;
+}
+
 
