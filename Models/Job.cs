@@ -12,45 +12,45 @@ namespace JobTracker.Models
 
         [Required]
         [MinLength(2)]
-        [Display(Name = "* Company Name :")]
+        [Display(Name = "* Company Name")]
         public string CompanyName { get; set; }
 
 
         [Required]
         [MinLength(2)]
-        [Display(Name = "* Job Title :")]
+        [Display(Name = "* Job Title")]
         public string JobTitle { get; set; }
 
 
         [Required]
-        [Display(Name = "* Status :")]
+        [Display(Name = "* Status")]
         public string JobStatus { get; set; }
 
-        [Display(Name = "Applied At :")]
+        [Display(Name = "Applied At")]
         public string AppliedAt { get; set; }
         
         [Required]
-        [Display(Name = "Date Applied :")]
+        [Display(Name = "Date Applied")]
         [DataType(DataType.Date)]
         public DateTime AppliedDate { get; set; }
 
 
-        [Display(Name = "Job Type :")]
+        [Display(Name = "Job Type")]
         public string JobType { get; set; }
 
 
-        [Display(Name = "Company Website :")]
+        [Display(Name = "Company Website")]
         public string CompanyWebsite { get; set; }
 
-        [Display(Name = "Application Link :")]
+        [Display(Name = "Application Link")]
         public string ApplicationLink { get; set; }
 
 
-        [Display(Name = "Required Skill :")]
+        [Display(Name = "Required Skill")]
         public string RequiredSkill { get; set; }
 
 
-        [Display(Name = "Note :")]
+        [Display(Name = "Note")]
         public string JobNote { get; set; }
 
         public int UserId { get; set; }

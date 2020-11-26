@@ -436,6 +436,8 @@ span{
 
 .job_form_input label{
     padding: 0.5vw 1vw;
+    font-weight: 600;
+    color: rgb(63, 141, 165);
 }
 
 .job_form_radio{
