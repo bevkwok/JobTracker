@@ -1,0 +1,83 @@
+@model ContactWrapper
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+</head>
+<body>
+    <div>
+        <partial name="SideNavPartial"/>
+    </div>
+    <div class="dashboard_main">
+        <div class="dashboard_header">
+            <div class="icon">
+                <h3><i class="fas fa-pen-fancy"></i>Add Contact</h3>
+            </div> 
+        </div>
+        <div class="job_form_title">
+            <p>* = required field</p>
+        </div>
+        <div class="job_form row">  
+
+            <form asp-action="AddContact" asp-controller="Home" method="POST">
+                <span asp-validation-for="TheContact.ContactFirstName"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ContactFirstName"></label>
+                    <input asp-for="TheContact.ContactFirstName">
+                </div>
+                <span asp-validation-for="TheContact.ContactLastName"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ContactLastName"></label>
+                    <input asp-for="TheContact.ContactLastName">
+                </div>
+                <span asp-validation-for="TheContact.ContactTitle"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ContactTitle"></label>
+                    <input asp-for="TheContact.ContactTitle">
+                </div>
+                <span asp-validation-for="TheContact.ContactEmail"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ContactEmail"></label>
+                    <input asp-for="TheContact.ContactEmail">
+                </div>
+                <span asp-validation-for="TheContact.ContactPhone"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ContactPhone"></label>
+                    <input asp-for="TheContact.ContactPhone">
+                </div>
+                <span asp-validation-for="TheContact.WorkFor"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.WorkFor"></label>
+                    <select asp-for="TheContact.WorkFor">
+                        @foreach (Job j in Model.TheUser.AppliedJobs)
+                        {
+                            <option>@j.JobTitle</option>
+                        }
+                    </select>
+                </div>
+                <span class="job_form_span" asp-validation-for="TheContact.Note"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.Note"></label>
+                    <textarea asp-for="TheContact.Note"></textarea>
+                </div>
+
+                <span class="job_form_span" asp-validation-for="TheContact.ThankYouLetter"></span>
+                <div class="job_form_input">
+                    <label asp-for="TheContact.ThankYouLetter"></label>
+                    <div class="job_form_radio">
+                        <div>
+                        <input asp-for="TheContact.ThankYouLetter" type="radio" value="FullTime" class="radio_option">Sent<br />
+                        <input asp-for="TheContact.ThankYouLetter" type="radio" value="PartTime" class="radio_option">Not Complete<br />
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" value="Submit" class="input_btn">
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

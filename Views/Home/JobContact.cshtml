@@ -1,0 +1,71 @@
+@model ContactWrapper
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+</head>
+<body>
+    <div>
+        <div class="sidenav">
+
+            <a asp-action="Home" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-home"></i>Home</a>
+            
+            <a asp-action="JobList" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-list"></i>Job List</a>
+
+            <a asp-action="AddJob" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-edit"></i>Add Job</a>
+
+            <a asp-action="PersonalInfo" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-id-badge"></i>Personal Info</a>
+
+            <a asp-action="JobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-address-book"></i>Contacts</a>
+
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
+        </div>
+    </div>
+    <div class="dashboard_main">
+        <div class="dashboard_header">
+            <div class="icon">
+                <h3><i class="fas fa-pen-fancy"></i>Contacts</h3>
+            </div> 
+        </div>
+        <div>
+            @if(Model.ContactList == null || Model.ContactList.Count == 0)
+            {
+                <br>
+                <div class="empty_list">
+                    <h5>Your contact list is empty</h5>
+                    <h5>Add contact now</h5>
+                    <a asp-action="AddContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
+                </div>
+            } else {
+                @foreach(Contact c in Model.ContactList)
+                {
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Company</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tr-non-title">
+                                <th>@c.ContactFirstName</th>
+                                <th>@c.ContactLastName</th>
+                                <th>@c.ContactEmail</th>
+                                <th>@c.ContactPhone</th>
+                                <th>@c.WorkFor</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <a asp-action="AddContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
+                }
+            }
+        </div>
+    </div>
+</body>
+</html>
