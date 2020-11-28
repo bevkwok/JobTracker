@@ -8,6 +8,7 @@ namespace JobTracker.Models
     {
     public User TheUser { get; set; }
 
+    public List<Job> JobList { get; set; }
     public Contact TheContact { get; set; }
     public List<Contact> ContactList { get; set; }
 

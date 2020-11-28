@@ -1,4 +1,4 @@
-@model ContactWrapper
+@model Contact
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,56 +20,50 @@
             <p>* = required field</p>
         </div>
         <div class="job_form row">  
-
-            <form asp-action="AddContact" asp-controller="Home" method="POST">
-                <span asp-validation-for="TheContact.ContactFirstName"></span>
+            <form asp-action="AddNewContact" asp-controller="Home" method="POST">
+                <span class="job_form_span" asp-validation-for="ContactFirstName"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ContactFirstName"></label>
-                    <input asp-for="TheContact.ContactFirstName">
+                    <label asp-for="ContactFirstName"></label>
+                    <input asp-for="ContactFirstName">
                 </div>
-                <span asp-validation-for="TheContact.ContactLastName"></span>
+                <span class="job_form_span" asp-validation-for="ContactLastName"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ContactLastName"></label>
-                    <input asp-for="TheContact.ContactLastName">
+                    <label asp-for="ContactLastName"></label>
+                    <input asp-for="ContactLastName">
                 </div>
-                <span asp-validation-for="TheContact.ContactTitle"></span>
+                <span class="job_form_span" asp-validation-for="ContactTitle"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ContactTitle"></label>
-                    <input asp-for="TheContact.ContactTitle">
+                    <label asp-for="ContactTitle"></label>
+                    <input asp-for="ContactTitle">
                 </div>
-                <span asp-validation-for="TheContact.ContactEmail"></span>
+                <span class="job_form_span" asp-validation-for="ContactEmail"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ContactEmail"></label>
-                    <input asp-for="TheContact.ContactEmail">
+                    <label asp-for="ContactEmail"></label>
+                    <input asp-for="ContactEmail">
                 </div>
-                <span asp-validation-for="TheContact.ContactPhone"></span>
+                <span class="job_form_span" asp-validation-for="ContactPhone"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ContactPhone"></label>
-                    <input asp-for="TheContact.ContactPhone">
+                    <label asp-for="ContactPhone"></label>
+                    <input asp-for="ContactPhone">
                 </div>
-                <span asp-validation-for="TheContact.WorkFor"></span>
+                <span class="job_form_span" asp-validation-for="FromCompany"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.WorkFor"></label>
-                    <select asp-for="TheContact.WorkFor">
-                        @foreach (Job j in Model.TheUser.AppliedJobs)
-                        {
-                            <option>@j.JobTitle</option>
-                        }
-                    </select>
+                    <label asp-for="FromCompany"></label>
+                    <input asp-for="FromCompany">
                 </div>
-                <span class="job_form_span" asp-validation-for="TheContact.Note"></span>
+                <span class="job_form_span" asp-validation-for="Note"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.Note"></label>
-                    <textarea asp-for="TheContact.Note"></textarea>
+                    <label asp-for="Note"></label>
+                    <textarea asp-for="Note"></textarea>
                 </div>
 
-                <span class="job_form_span" asp-validation-for="TheContact.ThankYouLetter"></span>
+                <span class="job_form_span" asp-validation-for="ThankYouLetter"></span>
                 <div class="job_form_input">
-                    <label asp-for="TheContact.ThankYouLetter"></label>
+                    <label asp-for="ThankYouLetter"></label>
                     <div class="job_form_radio">
                         <div>
-                        <input asp-for="TheContact.ThankYouLetter" type="radio" value="FullTime" class="radio_option">Sent<br />
-                        <input asp-for="TheContact.ThankYouLetter" type="radio" value="PartTime" class="radio_option">Not Complete<br />
+                        <input asp-for="ThankYouLetter" type="radio" value="FullTime" class="radio_option">Sent<br />
+                        <input asp-for="ThankYouLetter" type="radio" value="PartTime" class="radio_option">Not Complete<br />
                         </div>
                     </div>
                 </div>

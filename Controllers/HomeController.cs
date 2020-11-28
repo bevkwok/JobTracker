@@ -327,24 +327,37 @@ namespace JobTracker.Controllers
             int? theUserId = HttpContext.Session.GetInt32("UserId");
             ViewBag.Id = theUserId;
 
+
+            User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+
+            if(theUserId == null)
+            {
+                return Logout();
+            }
+            
+            return View("AddJobContact");
+        }
+
+        [HttpPost("add_contact/new")]
+        public IActionResult AddNewContact(Contact NewContact)
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            User activeUser = dbContext.Users.FirstOrDefault(u => u.UserId == theUserId);
+
             if(theUserId == null)
             {
                 return Logout();
             }
 
-            ContactWrapper ContactWMod = new ContactWrapper();
-
-            ContactWMod.TheUser = dbContext.Users
-                .Include(user => user.Contacts)
-                .Include(Uj => Uj.AppliedJobs)
-                .ThenInclude(ujt => ujt.JobTitle)
-                .FirstOrDefault(u => u.UserId == theUserId);
-
-            ContactWMod.TheContact = dbContext.Contacts
-                .Include(c => c.WorkFor)
-                .FirstOrDefault(cu=> cu.UserId == theUserId);
-            
-            return View("AddJobContact", ContactWMod);
+            if(ModelState.IsValid)
+            {
+                NewContact.UserId = (int)theUserId;
+                dbContext.Add(NewContact);
+                dbContext.SaveChanges();
+                return RedirectToAction("JobContact",new{UserId = theUserId});
+            }
+            return AddJobContact();
         }
     }
 }

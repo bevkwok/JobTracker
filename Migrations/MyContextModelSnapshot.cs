@@ -33,8 +33,8 @@ namespace JobTracker.Migrations
                     b.Property<string>("ContactLastName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("ContactPhone")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("ContactTitle")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -42,14 +42,18 @@ namespace JobTracker.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("JobId")
+                    b.Property<string>("FromCompany")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("JobId")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("ThankYouLetter")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("ThankYouLetter")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime(6)");
@@ -152,11 +156,9 @@ namespace JobTracker.Migrations
 
             modelBuilder.Entity("JobTracker.Models.Contact", b =>
                 {
-                    b.HasOne("JobTracker.Models.Job", "WorkFor")
+                    b.HasOne("JobTracker.Models.Job", null)
                         .WithMany("JobContact")
-                        .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("JobId");
 
                     b.HasOne("JobTracker.Models.User", "Candidate")
                         .WithMany("Contacts")

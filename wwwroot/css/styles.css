@@ -224,7 +224,7 @@ span{
     color: rgb(78, 78, 78);
 }
 
-.reg_log_form_input input{
+.reg_log_form_input input, option, select{
     display: block;
     width: 80%;
     height: 40px;
@@ -453,8 +453,12 @@ span{
     margin: 0.5vw 0.5vw;
 }
 
-.job_form_input input,textarea{
+.job_form_input input,textarea, option, select{
     padding: 0.5vw;
+}
+
+.job_form_input select{
+    width: 202px;
 }
 
 .btn_frame{
