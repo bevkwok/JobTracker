@@ -1,4 +1,3 @@
-
     <div class="sidenav">
 
         <a asp-action="Home" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-home"></i>Home</a>
@@ -9,6 +8,7 @@
 
         <a asp-action="PersonalInfo" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-id-badge"></i>Personal Info</a>
 
-        <a href=""><i class="fas fa-address-book"></i>Contact</a>
+        <a asp-action="JobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id"><i class="fas fa-address-book"></i>Contacts</a>
+
         <a href="/logout"><i class="fas fa-sign-out-alt"></i>Log out</a>
     </div>

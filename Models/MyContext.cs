@@ -7,7 +7,8 @@ namespace JobTracker.Models
 
         public DbSet<User> Users { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<Application> Applications { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
 
 
     }

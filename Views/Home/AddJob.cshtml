@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Job</title>
 </head>
 <body>
     <div>
@@ -22,16 +22,19 @@
         <form asp-action="AddNewJob" asp-controller="Home" method="POST">
             <div class="job_form row">
                 <div class="job_sub_form col">
+
                     <span class="job_form_span" asp-validation-for="CompanyName"></span>
                     <div class="job_form_input">
                         <label asp-for="CompanyName"></label>
                         <input asp-for="CompanyName">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="JobTitle"></span>
                     <div class="job_form_input">
                         <label asp-for="JobTitle"></label>
                         <input asp-for="JobTitle">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="JobStatus"></span>
                     <div class="job_form_input">
                         <label asp-for="JobStatus"></label>
@@ -44,17 +47,21 @@
                             </div>
                         </div>
                     </div>
+
                     <span class="job_form_span" asp-validation-for="AppliedAt"></span>
                     <div class="job_form_input">
                         <label asp-for="AppliedAt"></label>
                         <input asp-for="AppliedAt">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="AppliedDate"></span>
                     <div class="job_form_input">
                         <label asp-for="AppliedDate"></label>
                         <input asp-for="AppliedDate">
                     </div>
+
                 </div>
+
                 <div class="job_sub_form col">
                     <span class="job_form_span" asp-validation-for="JobType"></span>
                     <div class="job_form_input">
@@ -70,32 +77,37 @@
                             </div>
                         </div>
                     </div>
+
                     <span class="job_form_span" asp-validation-for="CompanyWebsite"></span>
                     <div class="job_form_input">
                         <label asp-for="CompanyWebsite"></label>
                         <input asp-for="CompanyWebsite">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="ApplicationLink"></span>
                     <div class="job_form_input">
                         <label asp-for="ApplicationLink"></label>
                         <input asp-for="ApplicationLink">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="RequiredSkill"></span>
                     <div class="job_form_input">
                         <label asp-for="RequiredSkill"></label>
                         <input asp-for="RequiredSkill">
                     </div>
+
                     <span class="job_form_span" asp-validation-for="JobNote"></span>
                     <div class="job_form_input">
                         <label asp-for="JobNote"></label>
                         <textarea asp-for="JobNote"></textarea>
                     </div>
+
                     <div class="btn_frame">
                         <input type="submit" value="ADD JOB" class="input_btn">
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 </html>

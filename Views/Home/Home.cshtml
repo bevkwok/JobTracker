@@ -31,8 +31,14 @@
             </div>
         </div>
         <div class="dashboard_job">
-            @if(Model.JobList != null)
+            @if(Model.JobList == null || Model.JobList.Count == 0)
             {
+                <div class="job_card">
+                    <h5>Your job list is empty</h5>
+                    <h5>Create your job list now</h5>
+                    <a asp-action="AddJob" asp-controller="Home" asp-route-UserId="@ViewBag.Id">+ &nbsp; Add Job</a>
+                </div>
+            } else {
                 @foreach(Job job in Model.JobList)
                 {
                     <div class="job_card">
@@ -40,8 +46,8 @@
                             <h5>@job.CompanyName</h5>
                             <p class="job_title">@job.JobTitle</p>
                             <p class="jobCard_status">@job.JobStatus</p>
-                            <a asp-action="EditWedding" asp-controller="Home" asp-route-id="@job.JobId">Detail</a>
-                            <a asp-action="DeleteWedding" asp-controller="Home" asp-route-id="@job.JobId">Delete</a>
+                            <a asp-action="EditJod" asp-controller="Home" asp-route-id="@job.JobId">Detail</a>
+                            <a asp-action="DeleteJod" asp-controller="Home" asp-route-id="@job.JobId">Delete</a>
                         </div>
                     </div>
                 }

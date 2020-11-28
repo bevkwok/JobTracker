@@ -29,12 +29,11 @@ namespace JobTracker.Models
         [Display(Name = "Phone :")]
         public int ContactPhone { get; set; }
 
-
         [Display(Name = "Note :")]
         public string Note { get; set; }
 
         [Display(Name = "Thank you letter")]
-        public bool ThankYouLetter { get; set; }
+        public string ThankYouLetter { get; set; }
 
         public int UserId { get; set; }
 
