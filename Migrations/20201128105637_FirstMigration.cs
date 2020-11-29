@@ -9,30 +9,6 @@ namespace JobTracker.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Jobs",
-                columns: table => new
-                {
-                    JobId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CompanyName = table.Column<string>(nullable: false),
-                    JobTitle = table.Column<string>(nullable: false),
-                    JobStatus = table.Column<string>(nullable: false),
-                    AppliedAt = table.Column<string>(nullable: true),
-                    AppliedDate = table.Column<DateTime>(nullable: false),
-                    JobType = table.Column<string>(nullable: true),
-                    CompanyWebsite = table.Column<string>(nullable: true),
-                    ApplicationLink = table.Column<string>(nullable: true),
-                    RequiredSkill = table.Column<string>(nullable: true),
-                    JobNote = table.Column<string>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdateAt = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Jobs", x => x.JobId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -50,7 +26,38 @@ namespace JobTracker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contact",
+                name: "Jobs",
+                columns: table => new
+                {
+                    JobId = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CompanyName = table.Column<string>(nullable: false),
+                    JobTitle = table.Column<string>(nullable: false),
+                    JobStatus = table.Column<string>(nullable: false),
+                    AppliedAt = table.Column<string>(nullable: true),
+                    AppliedDate = table.Column<DateTime>(nullable: false),
+                    JobType = table.Column<string>(nullable: true),
+                    CompanyWebsite = table.Column<string>(nullable: true),
+                    ApplicationLink = table.Column<string>(nullable: true),
+                    RequiredSkill = table.Column<string>(nullable: true),
+                    JobNote = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: false),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    UpdateAt = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Jobs", x => x.JobId);
+                    table.ForeignKey(
+                        name: "FK_Jobs_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
                 columns: table => new
                 {
                     ContactId = table.Column<int>(nullable: false)
@@ -59,44 +66,25 @@ namespace JobTracker.Migrations
                     ContactLastName = table.Column<string>(nullable: true),
                     ContactTitle = table.Column<string>(nullable: true),
                     ContactEmail = table.Column<string>(nullable: true),
-                    ContactPhone = table.Column<int>(nullable: false),
+                    ContactPhone = table.Column<string>(nullable: true),
                     Note = table.Column<string>(nullable: true),
-                    ThankYouLetter = table.Column<bool>(nullable: false),
+                    ThankYouLetter = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false),
                     JobId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     UpdateAt = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contact", x => x.ContactId);
+                    table.PrimaryKey("PK_Contacts", x => x.ContactId);
                     table.ForeignKey(
-                        name: "FK_Contact_Jobs_JobId",
-                        column: x => x.JobId,
-                        principalTable: "Jobs",
-                        principalColumn: "JobId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Applications",
-                columns: table => new
-                {
-                    ApplicationId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    UserId = table.Column<int>(nullable: false),
-                    JobId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Applications", x => x.ApplicationId);
-                    table.ForeignKey(
-                        name: "FK_Applications_Jobs_JobId",
+                        name: "FK_Contacts_Jobs_JobId",
                         column: x => x.JobId,
                         principalTable: "Jobs",
                         principalColumn: "JobId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Applications_Users_UserId",
+                        name: "FK_Contacts_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
@@ -104,34 +92,31 @@ namespace JobTracker.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Applications_JobId",
-                table: "Applications",
+                name: "IX_Contacts_JobId",
+                table: "Contacts",
                 column: "JobId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Applications_UserId",
-                table: "Applications",
+                name: "IX_Contacts_UserId",
+                table: "Contacts",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contact_JobId",
-                table: "Contact",
-                column: "JobId");
+                name: "IX_Jobs_UserId",
+                table: "Jobs",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Applications");
-
-            migrationBuilder.DropTable(
-                name: "Contact");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "Contacts");
 
             migrationBuilder.DropTable(
                 name: "Jobs");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

@@ -36,7 +36,7 @@
                 <div class="empty_list">
                     <h5>Your contact list is empty</h5>
                     <h5>Add contact now</h5>
-                    <a asp-action="AddContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
+                    <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
                 </div>
             } else {
                 @foreach(Contact c in Model.ContactList)
@@ -57,12 +57,12 @@
                                 <th>@c.ContactLastName</th>
                                 <th>@c.ContactEmail</th>
                                 <th>@c.ContactPhone</th>
-                                <th>@c.WorkFor</th>
+                                <th>@c.FromCompany</th>
                             </tr>
                         </tbody>
                     </table>
 
-                    <a asp-action="AddContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
+                    <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
                 }
             }
         </div>

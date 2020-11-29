@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobTracker.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20201128033844_EigthMigrations")]
-    partial class EigthMigrations
+    [Migration("20201128105637_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,8 +35,8 @@ namespace JobTracker.Migrations
                     b.Property<string>("ContactLastName")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<int>("ContactPhone")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactPhone")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("ContactTitle")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -50,8 +50,9 @@ namespace JobTracker.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<bool>("ThankYouLetter")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("ThankYouLetter")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("UpdateAt")
                         .HasColumnType("datetime(6)");

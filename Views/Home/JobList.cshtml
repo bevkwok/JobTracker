@@ -25,33 +25,77 @@
                     <a asp-action="AddJob" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Job</a>
                 </div>
             }
-            @if(Model.JobList != null || Model.JobList.Count != 0)
+            @if(Model.JobList != null && Model.JobList.Count != 0)
             {
+                <h4 class="jobList_type">Applied Job</h4>
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
                             <th>Company Name</th>
                             <th>Job Title</th>
-                            <th>Status</th>
-                            <th>Date Applied</th>
                             <th>Job Type</th>
+                            <th>Date Applied</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                 @foreach(Job j in Model.JobList)
                 {
+                    @if(j.JobStatus == "Applied"){
                         <tr class="tr-non-title">
                             <th>@j.CompanyName</th>
                             <th>@j.JobTitle</th>
-                            <th>@j.JobStatus</th>
-                            <th>@j.AppliedDate.ToString("MM/dd/yyyy")</th>
                             <th>@j.JobType</th>
+                            <th>@j.AppliedDate.ToString("MM/dd/yyyy")</th>
+                            <th>
+                                <a asp-action="EditJod" asp-controller="Home" asp-route-id="@j.JobId">Detail</a>
+                                <p class="between_a">|</p>
+                                <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
+                            </th>
                         </tr>
+                    }
+                }
+                    </tbody>
+                </table>
+                <br>
+                <h4 class="jobList_type">Interviewed Job</h4>
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Job Title</th>
+                            <th>Job Type</th>
+                            <th>Date Applied</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                @foreach(Job j in Model.JobList)
+                {
+                    @if(j.JobStatus == "Interviewed"){
+                        <tr class="tr-non-title">
+                            <th>@j.CompanyName</th>
+                            <th>@j.JobTitle</th>
+                            <th>@j.JobType</th>
+                            <th>@j.AppliedDate.ToString("MM/dd/yyyy")</th>
+                            <th>
+                                <a asp-action="EditJod" asp-controller="Home" asp-route-id="@j.JobId">Detail</a>
+                                <p class="between_a">|</p>
+                                <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
+                            </th>
+                        </tr>
+                    }
                 }
                     </tbody>
                 </table>
             }
 
     </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+    $(document).ready(function () {
+        
+    });
+    </script>
 </body>
 </html>

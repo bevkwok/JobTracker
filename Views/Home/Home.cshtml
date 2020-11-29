@@ -10,11 +10,10 @@
     <partial name="SideNavPartial"/>
     <div class="dashboard_main">
         <div class="dashboard_header">
-            @* <h1 class="middle">Job</h1> *@
             <div class="icon">
                 <h3><i class="fas fa-pen-fancy"></i>Job</h3>
+                <h4>Hello, @Model.TheUser.Username</h4>
             </div> 
-                @* <h4>Hello, @Model.TheUser.Username</h4> *@
         </div>
         <div class="dashboard_job_number">
             <div class="job_number_board">
@@ -46,8 +45,8 @@
                             <h5>@job.CompanyName</h5>
                             <p class="job_title">@job.JobTitle</p>
                             <p class="jobCard_status">@job.JobStatus</p>
-                            <a asp-action="EditJod" asp-controller="Home" asp-route-id="@job.JobId">Detail</a>
-                            <a asp-action="DeleteJod" asp-controller="Home" asp-route-id="@job.JobId">Delete</a>
+                            <a asp-action="EditJod" asp-controller="Home" asp-route-id="@job.JobId">Edit</a>
+                            <a asp-action="DeleteJob" asp-controller="Home" asp-route-id="@job.JobId">Delete</a>
                         </div>
                     </div>
                 }
