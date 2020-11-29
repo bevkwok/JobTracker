@@ -190,6 +190,57 @@ namespace JobTracker.Controllers
             return AddJob();
         }
 
+        [HttpGet("{UserId}/edit_job/{Id}")]
+        public IActionResult EditJob(int id)
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
+
+
+            Job TheJob = dbContext.Jobs.FirstOrDefault(j => j.JobId == id);
+
+            if(theUserId == null)
+            {
+                return Logout();
+            }
+
+            if(TheJob.UserId != (int)theUserId)
+            {
+                return RedirectToAction("Shows");
+            }
+            
+            return View("EditJob", TheJob);
+        }
+
+        [HttpPost("edit/job/{Id}")]
+        public IActionResult EditOldJob(Job EditedJob, int id){
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+
+            if(theUserId == null)
+            {
+                return Logout();
+            }
+
+            EditedJob.UserId = (int)theUserId;
+
+            Job TheJob = dbContext.Jobs.FirstOrDefault(j => j.JobId == id);
+
+            if(ModelState.IsValid)
+            {
+                EditedJob.JobId = id;
+                dbContext.Update(EditedJob);
+                dbContext.Entry(EditedJob).Property("CreatedAt").IsModified = false;
+                dbContext.SaveChanges();
+
+                return RedirectToAction("EditJob",new{UserId = theUserId, Id = id}); 
+            }
+            else
+            {
+                return EditJob(TheJob.JobId);
+            }
+        }
+
+
 
 
         [HttpGet("{UserId}/personal_info")]
@@ -240,11 +291,13 @@ namespace JobTracker.Controllers
                     ModelState.AddModelError("Email", "Email already in use!");
                     return PersonalInfo();
                 }
+
                 loginUser.Username = EditedUser.Username;
                 loginUser.Email = EditedUser.Email;
                 loginUser.Password = EditedUser.Password;
                 loginUser.UpdateAt = DateTime.Now;
-
+                dbContext.Update(loginUser);
+                dbContext.Entry(loginUser).Property("CreatedAt").IsModified = false;
                 dbContext.SaveChanges();
                 HttpContext.Session.SetInt32("UserId", EditedUser.UserId);
 
@@ -276,7 +329,7 @@ namespace JobTracker.Controllers
             dbContext.Remove(ToDelete);
             dbContext.SaveChanges();
 
-            return RedirectToAction("Dashboard",new{UserId = theUserId});
+            return RedirectToAction("Home",new{UserId = theUserId});
         }
 
         [HttpGet("job/detail/{JobId}")]

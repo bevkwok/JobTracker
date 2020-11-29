@@ -82,6 +82,10 @@ span{
     transform: translate(-50%, -50%);
 }
 
+.between_a{
+    display: inline;
+}
+
 .empty_list{
     text-align: center;
 }
@@ -459,6 +463,13 @@ span{
 
 .job_form_input select{
     width: 202px;
+}
+
+.jobList_type{
+    background-color: rgb(83, 134, 150);
+    color: white;
+    text-align: center;
+    padding: 1vw;
 }
 
 .btn_frame{
