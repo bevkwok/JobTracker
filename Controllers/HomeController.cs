@@ -57,6 +57,12 @@ namespace JobTracker.Controllers
             }
         }
 
+        [HttpGet("about_this_site")]
+        public IActionResult About()
+        {
+            return View("About");
+        }
+
         [HttpGet("signin")]
         public IActionResult Signin()
         {
@@ -67,28 +73,36 @@ namespace JobTracker.Controllers
         [HttpPost("login")]
         public IActionResult Login(UserLogin loginUser)
         {
-            User userInDb = dbContext.Users.FirstOrDefault(u => u.Email == loginUser.LogEmail);
-
-            if(userInDb == null)
+            if(ModelState.IsValid)
             {
-                ModelState.AddModelError("LogEmail", "Invalid Email/Password");
 
+                User userInDb = dbContext.Users.FirstOrDefault(u => u.Email == loginUser.LogEmail);
+
+                if(userInDb == null)
+                {
+                    ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+
+                    return Signin();
+                }
+
+                var hasher = new PasswordHasher<User>();
+
+                var result =  hasher.VerifyHashedPassword(userInDb, userInDb.Password, loginUser.LogPassword);
+
+                if(result == 0)
+                {
+                    ModelState.AddModelError("LogEmail", "Invalid Email/Password");
+
+                    return Signin();
+                }
+                HttpContext.Session.SetInt32("UserId", userInDb.UserId);
+                int? theUserId = HttpContext.Session.GetInt32("UserId");
+                return RedirectToAction("Home",new{UserId = theUserId});
+            }
+            else
+            {
                 return Signin();
             }
-
-            var hasher = new PasswordHasher<User>();
-
-            var result =  hasher.VerifyHashedPassword(userInDb, userInDb.Password, loginUser.LogPassword);
-
-            if(result == 0)
-            {
-                ModelState.AddModelError("LogEmail", "Invalid Email/Password");
-
-                return Signin();
-            }
-            HttpContext.Session.SetInt32("UserId", userInDb.UserId);
-            int? theUserId = HttpContext.Session.GetInt32("UserId");
-            return RedirectToAction("Home",new{UserId = theUserId});
         }
 
         [HttpGet("logout")]
@@ -412,6 +426,31 @@ namespace JobTracker.Controllers
                 return RedirectToAction("JobContact",new{UserId = theUserId});
             }
             return AddJobContact();
+        }
+
+        [HttpGet("/contact/delete/{id}")]
+        public IActionResult DeleteContact(int id)
+        {
+            int? theUserId = HttpContext.Session.GetInt32("UserId");
+            ViewBag.Id = theUserId;
+
+            if(theUserId == null)
+            {
+                return Logout();
+            }
+
+            Contact ToDelete = dbContext.Contacts
+            .FirstOrDefault(w => w.ContactId == id);
+
+            if(ToDelete == null || ToDelete.UserId != (int)theUserId)
+            {
+                return Logout();
+            }
+
+            dbContext.Remove(ToDelete);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("JobContact",new{UserId = theUserId});
         }
     }
 }

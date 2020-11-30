@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job List</title>
 </head>
@@ -48,7 +48,7 @@
                             <th>@j.JobType</th>
                             <th>@j.AppliedDate.ToString("MM/dd/yyyy")</th>
                             <th>
-                                <a asp-action="EditJod" asp-controller="Home" asp-route-id="@j.JobId">Detail</a>
+                                <a href="javascript:void(0)" id="toggle_slide_btn_@j.JobId">Detail</a>
                                 <p class="between_a">|</p>
                                 <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
                             </th>
@@ -57,23 +57,30 @@
                             <td class="hidden"></td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="toggle_slide">
+                            <td colspan="5" id="toggle_slide_@j.JobId" class="hide">
                                 <div class="sub_list_info">
                                 <p>Applied on @j.AppliedAt</p>
                                 <p>Note : @j.JobNote</p>
                                 <p>Required Skill : @j.RequiredSkill</p>
+                                <p>
+                                @if(@j.ApplicationLink != null){
+                                    @if(@j.ApplicationLink.StartsWith("https://")){
+                                        <a href="@j.ApplicationLink." target="_blank">Head to Application Link</a>
+                                    } else {
+                                        <a href="https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                    }
+                                }
+                                </p>
 
-                                @if(@j.ApplicationLink.StartsWith("https://")){
-                                    <a href="@j.ApplicationLink." target="_blank">head to Application Link</a>
-                                } else if(@j.ApplicationLink != null) {
-                                    <a href=$"https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                <p>
+                                @if(@j.CompanyWebsite != null){
+                                    @if(@j.CompanyWebsite.StartsWith("https://")){
+                                        <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
+                                    } else {
+                                        <a href="https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
+                                    }
                                 }
-                                
-                                @if(@j.CompanyWebsite.StartsWith("https://")){
-                                    <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
-                                } else if(@j.CompanyWebsite != null){
-                                    <a href=$"https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
-                                }
+                                </p>
                                 </div>
                             </td>
                         </tr>
@@ -105,7 +112,7 @@
                             <th>@j.JobType</th>
                             <th>@j.AppliedDate.ToString("MM/dd/yyyy")</th>
                             <th>
-                                <a asp-action="EditJod" asp-controller="Home" asp-route-id="@j.JobId">Detail</a>
+                                <a href="javascript:void(0)" id="toggle_slide_btn_@j.JobId">Detail</a>
                                 <p class="between_a">|</p>
                                 <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
                             </th>
@@ -114,23 +121,32 @@
                             <td class="hidden"></td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="toggle_slide">
+                            <td colspan="5" id="toggle_slide_@j.JobId" class="hide">
                                 <div class="sub_list_info">
                                 <p>Applied on @j.AppliedAt</p>
                                 <p>Note : @j.JobNote</p>
                                 <p>Required Skill : @j.RequiredSkill</p>
 
-                                @if(@j.ApplicationLink.StartsWith("https://")){
-                                    <a href="@j.ApplicationLink." target="_blank">head to Application Link</a>
-                                } else if (@j.ApplicationLink != null){
-                                    <a href=$"https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                <p>
+                                @if(@j.ApplicationLink != null){
+                                    @if(@j.ApplicationLink.StartsWith("https://")){
+                                        <a href="@j.ApplicationLink." target="_blank">Head to Application Link</a>
+                                    } else {
+                                        <a href="https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                    }
                                 }
+                                </p>
 
-                                @if(@j.CompanyWebsite.StartsWith("https://")){
-                                    <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
-                                } else if(@j.CompanyWebsite != null){
-                                    <a href=$"https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
+                                <p>
+                                @if(@j.CompanyWebsite != null){
+                                    @if(@j.CompanyWebsite.StartsWith("https://")){
+                                        <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
+                                    } else {
+                                        <a href="https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
+                                    }
                                 }
+                                </p>
+
                                 </div>
                             </td>
                         </tr>
@@ -143,7 +159,17 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
     $(document).ready(function () {
-        
+        let jobListLength = @Model.JobList.Count;
+
+        @foreach(Job j in Model.JobList)
+        {
+            <text>
+            console.log(@j.JobId);
+            $("#toggle_slide_btn_" + @j.JobId).click(function() {
+                $("#toggle_slide_" + @j.JobId).toggle(500);
+            })
+            </text>
+        }
     });
     </script>
 </body>

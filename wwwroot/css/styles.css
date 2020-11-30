@@ -90,6 +90,10 @@ span{
     text-align: center;
 }
 
+.hide{
+    display: none;
+}
+
 .hidden{
     display: none;
     opacity: 0;
@@ -484,7 +488,7 @@ span{
 }
 
 .sub_list_info p{
-    color:  rgb(83, 134, 150);
+    color:  rgb(107, 163, 180);
     font-weight: 600;
 }
 
