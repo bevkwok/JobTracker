@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UApplied</title>
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true">
+</head>
+<body id="index_body">
+    <div class="nav">
+        <div class="nav_title">
+            <h3><i class="fas fa-pen-fancy"></i> UApplied</h3>
+        </div>
+        <div class="nav_options">
+            <a href="/register">SIGN UP</a>
+        </div>
+    </div>
+    <div class="index_main">
+        <div class="index_main_title">
+            <h1>Welcome to UApplied</h1>
+        </div>
+        <div class="index_main_body">
+            <p>Hello, I am Beverly, a software developer</p>
+            <p>I created this website using ASP.Net and Entity Framework</p>
+            <p>We often apply to many job in the job hunting process</p>
+            <p>This site allows you to save all the information about the job you have applied</p>
+            <p>You can also save all the contact information of recruiters, hiring managers and your future boss.</p>
+        </div>
+        <div class="index_main_btn">
+            <input type="button" value="SIGU UP" onclick="location.href='@Url.Action("Register", "Home")'" />
+            <input type="button" value="LOG IN" onclick="location.href='@Url.Action("Signin", "Home")'" />
+        </div>
+    </div>
+    <partial name="CopyrightPartial"/>
+</body>
+</html>

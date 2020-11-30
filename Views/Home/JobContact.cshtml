@@ -36,7 +36,6 @@
                 <div class="empty_list">
                     <h5>Your contact list is empty</h5>
                     <h5>Add contact now</h5>
-                    <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
                 </div>
             } else {
                 @foreach(Contact c in Model.ContactList)
@@ -58,17 +57,48 @@
                                 <th>@c.ContactPhone</th>
                                 <th>@c.FromCompany</th>
                                 <th>
-                                <a asp-action="ContactDetail" asp-controller="Home" asp-route-id="@c.ContactId">Detail</a>
+                                <a href="javascript:void(0)" id="toggle_slide_btn_@c.ContactId">Detail</a>
                                 <p class="between_a">|</p>
                                 <a asp-action="DeleteContact" asp-controller="Home" asp-route-id="@c.ContactId">Delete</a>
                             </th>
                             </tr>
+                            <tr>
+                            <td class="hidden"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" id="toggle_slide_@c.ContactId" class="hide">
+                                <div class="sub_list_info">
+                                <p>@c.ContactTitle</p>
+                                <p>Note: @c.Note</p>
+                                @if(@c.ThankYouLetter != "sent"){
+                                    <p>Remeber to send a thank you letter to this contact</p>
+                                }
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 }
-                <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
             }
         </div>
+        <div class="empty_list">
+            <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
+        </div>
     </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+    $(document).ready(function () {
+
+        @foreach(Contact c in Model.ContactList)
+        {
+            <text>
+            console.log(@c.ContactId);
+            $("#toggle_slide_btn_" + @c.ContactId).click(function() {
+                $("#toggle_slide_" + @c.ContactId).toggle(500);
+            })
+            </text>
+        }
+    });
+    </script>
 </body>
 </html>
