@@ -90,11 +90,22 @@ span{
     text-align: center;
 }
 
+.hidden{
+    display: none;
+    opacity: 0;
+    visibility: hidden; 
+}
+
 .middle {
     text-align: center;
     font-family: 'Poppins', sans-serif;
     font-size: 35px;
     letter-spacing: 5px;
+}
+
+.toggle_slide{
+    display: table-cell;
+    width: 100%;
 }
 
 #index_body, #reg_log_body{
@@ -470,6 +481,11 @@ span{
     color: white;
     text-align: center;
     padding: 1vw;
+}
+
+.sub_list_info p{
+    color:  rgb(83, 134, 150);
+    font-weight: 600;
 }
 
 .btn_frame{

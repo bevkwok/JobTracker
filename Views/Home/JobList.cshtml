@@ -53,11 +53,37 @@
                                 <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
                             </th>
                         </tr>
+                        <tr>
+                            <td class="hidden"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="toggle_slide">
+                                <div class="sub_list_info">
+                                <p>Applied on @j.AppliedAt</p>
+                                <p>Note : @j.JobNote</p>
+                                <p>Required Skill : @j.RequiredSkill</p>
+
+                                @if(@j.ApplicationLink.StartsWith("https://")){
+                                    <a href="@j.ApplicationLink." target="_blank">head to Application Link</a>
+                                } else if(@j.ApplicationLink != null) {
+                                    <a href=$"https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                }
+                                
+                                @if(@j.CompanyWebsite.StartsWith("https://")){
+                                    <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
+                                } else if(@j.CompanyWebsite != null){
+                                    <a href=$"https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
+                                }
+                                </div>
+                            </td>
+                        </tr>
                     }
                 }
                     </tbody>
                 </table>
+
                 <br>
+
                 <h4 class="jobList_type">Interviewed Job</h4>
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
@@ -84,12 +110,35 @@
                                 <a asp-action="EditJob" asp-controller="Home" asp-route-id="@j.JobId">Edit</a>
                             </th>
                         </tr>
+                        <tr>
+                            <td class="hidden"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="toggle_slide">
+                                <div class="sub_list_info">
+                                <p>Applied on @j.AppliedAt</p>
+                                <p>Note : @j.JobNote</p>
+                                <p>Required Skill : @j.RequiredSkill</p>
+
+                                @if(@j.ApplicationLink.StartsWith("https://")){
+                                    <a href="@j.ApplicationLink." target="_blank">head to Application Link</a>
+                                } else if (@j.ApplicationLink != null){
+                                    <a href=$"https://{@j.ApplicationLink}" target="_blank">Head to Application Link &#8594</a>
+                                }
+
+                                @if(@j.CompanyWebsite.StartsWith("https://")){
+                                    <a href="@j.CompanyWebsite." target="_blank">Head to Company Website</a>
+                                } else if(@j.CompanyWebsite != null){
+                                    <a href=$"https://{@j.CompanyWebsite}" target="_blank">Head to Company Website &#8594</a>
+                                }
+                                </div>
+                            </td>
+                        </tr>
                     }
                 }
                     </tbody>
                 </table>
             }
-
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
