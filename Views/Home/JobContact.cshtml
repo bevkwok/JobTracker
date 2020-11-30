@@ -44,26 +44,29 @@
                     <table class="table table-striped table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Company</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="tr-non-title">
-                                <th>@c.ContactFirstName</th>
-                                <th>@c.ContactLastName</th>
+                                <th>@c.ContactFirstName @c.ContactLastName</th>
                                 <th>@c.ContactEmail</th>
                                 <th>@c.ContactPhone</th>
                                 <th>@c.FromCompany</th>
+                                <th>
+                                <a asp-action="ContactDetail" asp-controller="Home" asp-route-id="@c.ContactId">Detail</a>
+                                <p class="between_a">|</p>
+                                <a asp-action="DeleteContact" asp-controller="Home" asp-route-id="@c.ContactId">Delete</a>
+                            </th>
                             </tr>
                         </tbody>
                     </table>
-
-                    <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
                 }
+                <a asp-action="AddJobContact" asp-controller="Home" asp-route-UserId="@ViewBag.Id" class="input_btn">+ &nbsp; Add Contact</a>
             }
         </div>
     </div>

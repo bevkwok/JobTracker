@@ -145,6 +145,7 @@ namespace JobTracker.Controllers
 
             HomeWMod.JobList = dbContext.Jobs
                 .Where(jsu => jsu.UserId == theUserId)
+                .OrderByDescending(jl => jl.AppliedDate)
                 .ToList();
 
             return View("JobList", HomeWMod);
@@ -190,7 +191,7 @@ namespace JobTracker.Controllers
             return AddJob();
         }
 
-        [HttpGet("{UserId}/edit_job/{Id}")]
+        [HttpGet("edit_job/{Id}")]
         public IActionResult EditJob(int id)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -206,7 +207,7 @@ namespace JobTracker.Controllers
 
             if(TheJob.UserId != (int)theUserId)
             {
-                return RedirectToAction("Shows");
+                return RedirectToAction("Home",new{UserId = theUserId});
             }
             
             return View("EditJob", TheJob);
