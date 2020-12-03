@@ -27,13 +27,13 @@ namespace JobTracker.Controllers
             return View("Index");
         }
 
-        [HttpGet("register")]
+        [HttpGet("/register")]
         public IActionResult Register()
         {
             return View("Register");
         }
 
-        [HttpPost("creat_user")]
+        [HttpPost("/create_user")]
         public IActionResult CreateUser(User newUser)
         {
             if(ModelState.IsValid)
@@ -57,20 +57,20 @@ namespace JobTracker.Controllers
             }
         }
 
-        [HttpGet("about_this_site")]
+        [HttpGet("/about_this_site")]
         public IActionResult About()
         {
             return View("About");
         }
 
-        [HttpGet("signin")]
+        [HttpGet("/signin")]
         public IActionResult Signin()
         {
             return View("Signin");
         }
 
 
-        [HttpPost("login")]
+        [HttpPost("/login")]
         public IActionResult Login(UserLogin loginUser)
         {
             if(ModelState.IsValid)
@@ -105,7 +105,7 @@ namespace JobTracker.Controllers
             }
         }
 
-        [HttpGet("logout")]
+        [HttpGet("/logout")]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -113,7 +113,7 @@ namespace JobTracker.Controllers
             return RedirectToAction("Signin");
         }
 
-        [HttpGet("home/{UserId}")]
+        [HttpGet("/home/{UserId}")]
         public IActionResult Home(int UserId)
         {   
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -140,7 +140,7 @@ namespace JobTracker.Controllers
             return View("Home", HomeWMod);
         }
 
-        [HttpGet("{UserId}/job/list")]
+        [HttpGet("/{UserId}/job/list")]
         public IActionResult JobList()
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -167,7 +167,7 @@ namespace JobTracker.Controllers
             return View("JobList", HomeWMod);
         }
 
-        [HttpGet("{UserId}/add_job")]
+        [HttpGet("/{UserId}/add_job")]
         public IActionResult AddJob()
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -184,7 +184,7 @@ namespace JobTracker.Controllers
             return View("AddJob");
         }
 
-        [HttpPost("add_job/new")]
+        [HttpPost("/add_job/new")]
         public IActionResult AddNewJob(Job NewJob)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -207,7 +207,7 @@ namespace JobTracker.Controllers
             return AddJob();
         }
 
-        [HttpGet("edit_job/{Id}")]
+        [HttpGet("/edit_job/{Id}")]
         public IActionResult EditJob(int id)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -229,7 +229,7 @@ namespace JobTracker.Controllers
             return View("EditJob", TheJob);
         }
 
-        [HttpPost("edit/job/{Id}")]
+        [HttpPost("/edit/job/{Id}")]
         public IActionResult EditOldJob(Job EditedJob, int id){
             int? theUserId = HttpContext.Session.GetInt32("UserId");
 
@@ -260,7 +260,7 @@ namespace JobTracker.Controllers
 
 
 
-        [HttpGet("{UserId}/personal_info")]
+        [HttpGet("/{UserId}/personal_info")]
         public IActionResult PersonalInfo()
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -279,7 +279,7 @@ namespace JobTracker.Controllers
             return View("PersonalInfo", loginUser);
         }
 
-        [HttpPost("edit/user/{UserId}")]
+        [HttpPost("/edit/user/{UserId}")]
         public IActionResult EditUser(User EditedUser, string OldPassword)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -349,7 +349,7 @@ namespace JobTracker.Controllers
             return RedirectToAction("Home",new{UserId = theUserId});
         }
 
-        [HttpGet("job/detail/{JobId}")]
+        [HttpGet("/job/detail/{JobId}")]
         public IActionResult JobDetail(int? JobId)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -367,7 +367,7 @@ namespace JobTracker.Controllers
             return View("JobDetail", theJob);
         }
 
-        [HttpGet("job/contact/{UserId}")]
+        [HttpGet("/job/contact/{UserId}")]
         public IActionResult JobContact(int UserId)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -391,7 +391,7 @@ namespace JobTracker.Controllers
             return View("JobContact", ContactWMod);
         }
 
-        [HttpGet("{UserId}/add_job_contact")]
+        [HttpGet("/{UserId}/add_job_contact")]
         public IActionResult AddJobContact()
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
@@ -408,7 +408,7 @@ namespace JobTracker.Controllers
             return View("AddJobContact");
         }
 
-        [HttpPost("add_contact/new")]
+        [HttpPost("/add_contact/new")]
         public IActionResult AddNewContact(Contact NewContact)
         {
             int? theUserId = HttpContext.Session.GetInt32("UserId");
