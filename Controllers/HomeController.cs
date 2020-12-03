@@ -133,6 +133,8 @@ namespace JobTracker.Controllers
 
             HomeWMod.JobList = dbContext.Jobs
                 .Where(jsu => jsu.UserId == theUserId)
+                .OrderByDescending(jl => jl.AppliedDate)
+                .Take(9)
                 .ToList();
 
             return View("Home", HomeWMod);
