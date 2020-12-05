@@ -39,12 +39,20 @@
                     <div class="job_form_input">
                         <label asp-for="JobStatus"></label>
                         <div class="job_form_radio">
-                            <div>
+                            <select asp-for="JobStatus">
+                                <div>
+                                    <option value="Applied" class="radio_option">Applied</option>
+                                </div>
+                                <div>
+                                    <option value="Interviewed" class="radio_option">Interviewed</option>
+                                </div>
+                            </select>
+                            @* <div>
                             <input asp-for="JobStatus" type="radio" value="Applied" class="radio_option">Applied<br />
                             </div>
                             <div>
                             <input asp-for="JobStatus" type="radio" value="Interviewed" class="radio_option">Interviewed<br />
-                            </div>
+                            </div> *@
                         </div>
                     </div>
 
@@ -67,14 +75,21 @@
                     <div class="job_form_input">
                         <label asp-for="JobType"></label>
                         <div class="job_form_radio">
-                            <div>
-                            <input asp-for="JobType" type="radio" value="FullTime" class="radio_option">Full-Time<br />
-                            <input asp-for="JobType" type="radio" value="PartTime" class="radio_option">Part-Time<br />
-                            </div>
-                            <div>
-                            <input asp-for="JobType" type="radio" value="Contract" class="radio_option">Contract<br />
-                            <input asp-for="JobType" type="radio" value="Seasonal" class="radio_option">Seasonal<br />
-                            </div>
+                            <select asp-for="JobType" name="" id="">
+                                <div>
+                                    <option value="FullTime" class="radio_option">Full-Time</option><br />
+                                    <option value="PartTime" class="radio_option">Part-Time</option><br />
+
+                                @* <input asp-for="JobType" type="radio" value="FullTime" class="radio_option">Full-Time<br />
+                                <input asp-for="JobType" type="radio" value="PartTime" class="radio_option">Part-Time<br /> *@
+                                </div>
+                                <div>
+                                    <option value="Contract" class="radio_option">Contract</option><br />
+                                    <option value="Seasonal" class="radio_option">Seasonal</option><br />
+                                @* <input asp-for="JobType" type="radio" value="Contract" class="radio_option">Contract<br />
+                                <input asp-for="JobType" type="radio" value="Seasonal" class="radio_option">Seasonal<br /> *@
+                                </div>
+                            </select>
                         </div>
                     </div>
 

@@ -3,14 +3,16 @@ using System;
 using JobTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobTracker.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201205105519_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,16 +84,14 @@ namespace JobTracker.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ApplicationLink")
-                        .HasColumnName("ApplicationLink")
-                        .HasColumnType("LONGTEXT")
-                        .HasMaxLength(755);
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<string>("AppliedAt")
                         .HasColumnType("varchar(46) CHARACTER SET utf8mb4")
                         .HasMaxLength(46);
 
-                    b.Property<DateTime?>("AppliedDate")
-                        .IsRequired()
+                    b.Property<DateTime>("AppliedDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CompanyName")
@@ -100,15 +100,14 @@ namespace JobTracker.Migrations
                         .HasMaxLength(46);
 
                     b.Property<string>("CompanyWebsite")
-                        .HasColumnType("varchar(555) CHARACTER SET utf8mb4")
-                        .HasMaxLength(555);
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4")
+                        .HasMaxLength(255);
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("JobNote")
-                        .HasColumnName("JobNote")
-                        .HasColumnType("LONGTEXT")
+                        .HasColumnType("varchar(500) CHARACTER SET utf8mb4")
                         .HasMaxLength(500);
 
                     b.Property<string>("JobStatus")

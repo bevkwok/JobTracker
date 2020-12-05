@@ -240,7 +240,7 @@ namespace JobTracker.Controllers
 
             EditedJob.UserId = (int)theUserId;
 
-            Job TheJob = dbContext.Jobs.FirstOrDefault(j => j.JobId == id);
+            // Job TheJob = dbContext.Jobs.FirstOrDefault(j => j.JobId == id);
 
             if(ModelState.IsValid)
             {
@@ -253,7 +253,7 @@ namespace JobTracker.Controllers
             }
             else
             {
-                return EditJob(TheJob.JobId);
+                return EditJob(id);
             }
         }
 
@@ -289,19 +289,22 @@ namespace JobTracker.Controllers
 
             PasswordHasher<User> Hasher = new PasswordHasher<User>();
 
-            var result =  Hasher.VerifyHashedPassword(loginUser, loginUser.Password, OldPassword);
+            if(OldPassword != null){
+                var result =  Hasher.VerifyHashedPassword(loginUser, loginUser.Password, OldPassword);
 
-            if(result == 0)
-            {
-                ModelState.AddModelError("Password", "Incorrect old password!");
+                if(result == 0)
+                {
+                    ModelState.AddModelError("Password", "Incorrect old password!");
 
-                return PersonalInfo();
+                    return PersonalInfo();
+                }
             }
 
             if(ModelState.IsValid)
-            {
-
+            {   if(EditedUser.Password != null){
                 EditedUser.Password = Hasher.HashPassword(EditedUser, EditedUser.Password);
+                loginUser.Password = EditedUser.Password;
+            }
 
                 if(dbContext.Users.Any(u => u.Email == EditedUser.Email) && EditedUser.Email != loginUser.Email)
                 {
@@ -311,13 +314,11 @@ namespace JobTracker.Controllers
 
                 loginUser.Username = EditedUser.Username;
                 loginUser.Email = EditedUser.Email;
-                loginUser.Password = EditedUser.Password;
                 loginUser.UpdateAt = DateTime.Now;
                 dbContext.Update(loginUser);
                 dbContext.Entry(loginUser).Property("CreatedAt").IsModified = false;
                 dbContext.SaveChanges();
                 HttpContext.Session.SetInt32("UserId", EditedUser.UserId);
-
                 return RedirectToAction("Home",new{UserId = theUserId}); 
             }
             else

@@ -3,14 +3,16 @@ using System;
 using JobTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobTracker.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201205110924_SeventhMigration")]
+    partial class SeventhMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,8 +92,7 @@ namespace JobTracker.Migrations
                         .HasColumnType("varchar(46) CHARACTER SET utf8mb4")
                         .HasMaxLength(46);
 
-                    b.Property<DateTime?>("AppliedDate")
-                        .IsRequired()
+                    b.Property<DateTime>("AppliedDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CompanyName")

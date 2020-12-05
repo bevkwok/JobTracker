@@ -10,7 +10,6 @@ namespace JobTracker.Models
         public int UserId {get; set;}
         
         [MinLength(2, ErrorMessage = "Username must contain at least 2 character")]
-        [MaxLength(46, ErrorMessage = "Username must be within 46 character")]
         [Display(Name = "Username")]
         [Required(ErrorMessage = "Username is required")]
         public string Username {get; set;}
@@ -25,8 +24,7 @@ namespace JobTracker.Models
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
         [MinLength(8, ErrorMessage="Password must have at least 8 characters.")]
-        [MaxLength(46, ErrorMessage = "Password must be within 46 character")]
-
+        [Column("Password", TypeName = "LONGTEXT")]
         [RegularExpression(@"^(?=.*[a-z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,}$", ErrorMessage="Password must contain at least 1 number, 1 letter and a special character")]
         public string Password {get; set;}
 
