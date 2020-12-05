@@ -22,13 +22,13 @@
                 <span asp-validation-for="Username"></span>
                 <div class="job_form_input">
                     <label asp-for="Username"></label>
-                    <input asp-for="Username">
+                    <input asp-for="Username" value="@Model.Username">
                 </div>
                 <span asp-validation-for="Email"></span>
                 <div class="job_form_input">
                     <label asp-for="Email"></label>
                     @* <p>@Model.Email</p> *@
-                    <input asp-for="Email">
+                    <input asp-for="Email" value="@Model.Email">
                 </div>
                 <span asp-validation-for="Password"></span>
                 <div class="job_form_input">

@@ -35,6 +35,7 @@ namespace JobTracker.Models
         
         [Required]
         [Display(Name = "Date Applied")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime AppliedDate { get; set; }
 
@@ -45,12 +46,12 @@ namespace JobTracker.Models
 
 
         [Display(Name = "Company Website")]
-        [MaxLength(255, ErrorMessage = "Company website must be within 255 character")]
-
+        [MaxLength(555, ErrorMessage = "Required Skill must be within 555 character")]
         public string CompanyWebsite { get; set; }
 
         [Display(Name = "Application Link")]
-        [MaxLength(255, ErrorMessage = "Application link must be within 255 character")]
+        [MaxLength(755, ErrorMessage = "Required Skill must be within 755 character")]
+        [Column("ApplicationLink", TypeName = "LONGTEXT")]
         public string ApplicationLink { get; set; }
 
 
@@ -61,7 +62,9 @@ namespace JobTracker.Models
 
 
         [Display(Name = "Note")]
-        [MaxLength(500, ErrorMessage = "Note must be within 255 character")]
+        [MaxLength(500, ErrorMessage = "Note must be within 500 character")]
+        [Column("JobNote", TypeName = "LONGTEXT")]
+
         public string JobNote { get; set; }
 
         public int UserId { get; set; }
